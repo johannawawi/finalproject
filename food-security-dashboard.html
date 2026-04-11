@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLens Jatim — East Java Food Security Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2D7C5E;
+            --primary-light: #E8F4F1;
+            --primary-mid: #5BA87F;
+            --primary-dark: #1E5239;
+            --bg: #FAFAF9;
+            --surface: #FFFFFF;
+            --border: #E5E3DE;
+            --text: #1A1A19;
+            --text-muted: #6B6B67;
+            --accent: #D4A574;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--surface);
+            border-bottom: 0.5px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .nav-logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(45, 124, 94, 0.15);
+        }
+
+        .logo-mark svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .nav-links button:hover {
+            color: var(--text);
+            background: var(--primary-light);
+        }
+
+        .nav-links button.active {
+            color: var(--primary);
+            background: var(--primary-light);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(45, 124, 94, 0.2);
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(45, 124, 94, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* ===== PAGE TRANSITIONS ===== */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 7rem 2rem 6rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            display: block;
+        }
+
+        .hero > p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 13px 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            display: inline-block;
+            box-shadow: 0 4px 16px rgba(45, 124, 94, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(45, 124, 94, 0.3);
+        }
+
+        .hero-accent {
+            margin-top: 4rem;
+            padding: 1rem;
+            background: var(--primary-light);
+            border-radius: 12px;
+            font-size: 14px;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            text-align: left;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+
+        /* ===== DASHBOARD PAGE ===== */
+        .dash-header {
+            padding: 2.5rem 2rem;
+            border-bottom: 0.5px solid var(--border);
+            background: var(--surface);
+        }
+
+        .dash-header-inner {
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+
+        .dash-title h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .dash-title p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: inline-block;
+            margin-top: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .badge.green {
+            background: #D4EDDA;
+            color: #1E5239;
+        }
+
+        /* ===== VIZ CONTAINER ===== */
+        .dash-body {
+            padding: 2rem;
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+
+        .viz-container {
+            background: var(--surface);
+            border: 0.5px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 1620px;
+            margin: 0 auto;
+        }
+
+        .viz-toolbar {
+            padding: 16px 20px;
+            border-bottom: 0.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fafaf9;
+        }
+
+        .viz-toolbar span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tableau-wrap {
+            width: 100%;
+            height: 900px;
+            position: relative;
+            background: white;
+        }
+
+        .tableauPlaceholder {
+            width: 100% !important;
+            height: 900px !important;
+            border: none;
+            display: block;
+        }
+
+        /* ===== INFO SECTIONS ===== */
+        .info-section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-section.alt {
+            background: var(--primary-light);
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 0.5px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 8px 24px rgba(45, 124, 94, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .info-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .p {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* ===== ABOUT/CONTACT SECTION ===== */
+        .about-section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-content p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .contact-info {
+            background: var(--primary-light);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .contact-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            font-size: 14px;
+        }
+
+        .contact-item strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item span {
+            color: var(--text-muted);
+        }
+
+        .contact-item a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 2rem 0;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 0.5px solid var(--border);
+            background: var(--surface);
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 3rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav {
+                height: auto;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .dash-header {
+                padding: 1.5rem;
+            }
+
+            .dash-title h2 {
+                font-size: 20px;
+            }
+
+            .tableau-wrap {
+                height: 600px;
+            }
+
+            .tableauPlaceholder {
+                height: 600px !important;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo" onclick="showPage('home')">
+            <div class="logo-mark">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 20V10M10 20V4M16 20v-6M22 20v-8" stroke="white"/>
+                </svg>
+            </div>
+            FoodLens Jatim
+        </div>
+        <div class="nav-links">
+            <button class="active" id="nav-home" onclick="showPage('home')">Home</button>
+            <button id="nav-dashboard" onclick="showPage('dashboard')">Dashboard</button>
+            <button id="nav-about" onclick="showPage('about')">Tentang</button>
+        </div>
+        <button class="nav-cta" onclick="showPage('dashboard')">Buka Dashboard</button>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+        <div class="hero">
+            <h1>Analitik <span>Ketahanan Pangan Wilayah Jawa Timur</span></h1>
+            <p>Platform visualisasi data interaktif untuk memantau dan menganalisis indikator ketahanan pangan di seluruh kabupaten/kota Provinsi Jawa Timur</p>
+            <button class="btn-primary" onclick="showPage('dashboard')">Lihat Dashboard Interaktif</button>
+            <div class="hero-accent">
+                <strong style="color: var(--primary);"> Dashboard Powered by Tableau Public Edition</strong><br>
+                Eksplorasi data ketahanan pangan melalui visualisasi interaktif yang mendalam dengan filter dinamis dan insights mendalam.
+            </div>
+        </div>
+
+        <!-- PENJELASAN DASHBOARD -->
+        <div class="info-section">
+            <div class="section-title">📈 Tentang Dashboard</div>
+            <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8; max-width: 100%; text-align: justify;">
+                Dashboard ini menyajikan hasil analisis komprehensif terhadap indikator-indikator ketahanan pangan di Provinsi Jawa Timur. 
+                Melalui visualisasi interaktif, Anda dapat mengeksplorasi pola distribusi, hubungan antar variabel, dan perbandingan tingkat 
+                ketahanan pangan antar kabupaten/kota. Data tersaji dalam bentuk yang mudah dipahami untuk mendukung pengambilan keputusan 
+                berbasis data oleh pemangku kebijakan.
+            </p>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><span class="icon">🔍</span> Eksplorasi Univariat & Multivariat</h3>
+                    <p>Visualisasi pola distribusi indikator dan hubungan antar variabel ketahanan pangan untuk pemahaman mendalam tentang dinamika pangan regional.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">🎯</span> Identifikasi Indikator Dominan</h3>
+                    <p>Hasil analisis faktor menunjukkan indikator-indikator yang paling signifikan merepresentasikan masing-masing dimensi ketahanan pangan.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">🤖</span> Klasifikasi Berbasis Machine Learning</h3>
+                    <p>Model klasifikasi menggunakan perbandingan model klasifikasi Random Forest, GAM, dan Deep Neural Network untuk prediksi tingkat ketahanan pangan yang akurat.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- METODOLOGI -->
+        <div class="info-section alt">
+            <div class="section-title">🔬 Metodologi Penelitian</div>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><span class="icon">📊</span> Analisis Faktor (FA)</h3>
+                    <p>Mengidentifikasi dan mengekstrak faktor-faktor dominan dari indikator ketahanan pangan dengan menggunakan metode Confirmatory Factor Analysis (CFA) untuk menguji variabel-variabel yang berkontribusi signifikan terhadap masing-masing dimensi.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">🌳</span> Random Forest (RF)</h3>
+                    <p>Algoritma ensemble learning yang menggabungkan multiple decision trees untuk klasifikasi tingkat ketahanan pangan dengan tingkat akurasi tinggi.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">📈</span> Generalized Additive Models (GAM)</h3>
+                    <p>Model semi-parametrik yang menangkap hubungan non-linear kompleks antara indikator dan tingkat ketahanan pangan dengan interpretabilitas tinggi.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">🧠</span> Deep Neural Network (DNN)</h3>
+                    <p>Arsitektur neural network deep learning untuk menangkap pola kompleks dan interaksi non-linear dalam data ketahanan pangan.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">🗺️</span> Scope Geografis</h3>
+                    <p>Analisis mencakup seluruh kabupaten/kota di Provinsi Jawa Timur dengan tingkat granularitas detail untuk insights yang actionable.</p>
+                </div>
+                <div class="info-card">
+                    <h3><span class="icon">⏱️</span> Temporal Coverage</h3>
+                    <p>Data dianalisis dalam periode waktu tertentu untuk menangkap tren dan pola perubahan tingkat ketahanan pangan dari waktu ke waktu.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMBER DATA -->
+        <div class="info-section">
+            <div class="section-title">📚 Sumber Data</div>
+
+            <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-bottom: 2rem; text-align: justify;">
+                Data ketahanan pangan dalam dashboard ini dikumpulkan dari berbagai sumber resmi dan terpercaya untuk memastikan akurasi serta konsistensi analisis. 
+                Setiap variabel merepresentasikan aspek penting dalam ketahanan pangan yang diperoleh dari instansi pemerintah terkait.
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-card">
+                    <h3><span class="icon">🏛️</span> Badan Pusat Statistik (BPS)</h3>
+                    <p>
+                        Menyediakan data makro dan sosial ekonomi, meliputi produksi dan luas panen tanaman pangan, gini ratio, sanitasi layak, bantuan pangan, frekuensi bencana, PDRB dan pertumbuhan ekonomi, pengeluaran per kapita, tingkat pengangguran, indikator infrastruktur (minimarket, restoran, transportasi desa), serta angka harapan hidup.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">🥗</span> Badan Pangan Nasional (Bapanas)</h3>
+                    <p>
+                        Menyediakan data terkait aspek pemanfaatan pangan dan kesejahteraan masyarakat, meliputi persentase kemiskinan, 
+                        prevalensi stunting, rata-rata pendidikan ibu, akses air bersih, serta rasio tenaga kesehatan.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">💰</span> Dinas Perindustrian dan Perdagangan Jawa Timur</h3>
+                    <p>
+                        Menyediakan data harga bahan pokok, yang mencakup rata-rata harga komoditas utama seperti beras, telur, minyak goreng, 
+                        dan cabai sebagai indikator stabilitas harga pangan.
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <h3><span class="icon">📈</span> Kementerian Investasi / BKPM</h3>
+                    <p>
+                        Menyediakan data realisasi investasi daerahyang di gunakan untuk menggambarkan aktivitas ekonomi dan potensi 
+                        pengembangan wilayah dalam mendukung ketahanan pangan.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="page-dashboard" class="page">
+        <div class="dash-header">
+            <div class="dash-header-inner">
+                <div class="dash-title">
+                    <h2>Dashboard Interaktif</h2>
+                    <p>Ketahanan Pangan Provinsi Jawa Timur — Analisis Komprehensif Indikator & Klasifikasi Tingkat Ketahanan</p>
+                    <span class="badge green">Live</span>
+                    <span class="badge">Tableau Public</span>
+                </div>
+            </div>
+        </div>
+        <div class="dash-body">
+            <div class="viz-container">
+                <div class="viz-toolbar">
+                    <span>🔍 Jelajahi data secara interaktif — gunakan filter dan hover untuk detail</span>
+                </div>
+                <div class="tableau-wrap">
+                    <div class='tableauPlaceholder' id='viz1775825548370' style='position: relative'>
+                        <noscript>
+                            <a href='#'><img alt='Food Security Dashboard' src='https://public.tableau.com/static/images/PA/PA-FoodSecurity/PageFA/1_rss.png' style='border: none' /></a>
+                        </noscript>
+                        <object class='tableauViz' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                            <param name='embed_code_version' value='3' />
+                            <param name='site_root' value='' />
+                            <param name='name' value='PA-FoodSecurity&#47;PageFA' />
+                            <param name='toolbar' value='yes' />
+                            <param name='static_image' value='https://public.tableau.com/static/images/PA/PA-FoodSecurity/PageFA/1.png' />
+                            <param name='animate_transition' value='yes' />
+                            <param name='display_static_image' value='yes' />
+                            <param name='display_spinner' value='yes' />
+                            <param name='display_overlay' value='yes' />
+                            <param name='display_count' value='yes' />
+                            <param name='language' value='id' />
+                            <param name='filter' value='publish=yes' />
+                            <param name='showShareOptions' value='false' />
+                            <param name='showVizHome' value='no' />
+                        </object>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="page-about" class="page">
+        <div class="about-section">
+            <h2>Tentang Final Project</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Latar Belakang Project</h3>
+                    <p>
+                        Project ini adalah hasil dari penelitian mendalam tentang ketahanan pangan di Provinsi Jawa Timur. Melalui kombinasi 
+                        analisis faktor dan klasifikasi mengggunakan machine learning, penulis mengidentifikasi pola-pola penting dalam data ketahanan pangan 
+                        yang dapat digunakan untuk formulasi kebijakan yang lebih efektif.
+                    </p>
+                    <p>
+                        Fokus utama adalah pada eksplorasi indikator multidimensional, identifikasi faktor dominan, dan pengembangan model 
+                        klasifikasi yang robust untuk memprediksi tingkat ketahanan pangan di tingkat kabupaten/kota di Provinsi Jawa Timur.
+                    </p>
+                </div>
+                <div class="contact-info">
+                    <h3>📞 Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <strong>Email</strong>
+                        <span><a href="mailto:info@foodlensjatim-analytics.id">work.johannawawi@gmail.com</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Institusi</strong>
+                        <span>Program Studi D4 Sains Data Terapan, Politeknik Elektronika Negeri Surabaya</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Lokasi</strong>
+                        <span>Surabaya, Jawa Timur, Indonesia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Tim Peneliti</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 1rem; text-align: justify;">
+                    Project ini dikerjakan oleh mahasiswa Sains Data Terapan didampingi oleh dosen pembimbing dengan expertise di bidang data science:
+                </p>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3 style="color: var(--primary);">Penulis</h3>
+                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Johan Winarwan Naawi</h4>
+                        <p>Mahasiswa D4 Sains Data Terapan di Politeknik Elektronika Negeri Surabaya yang melakukan penelitian, analisis data, dan pengembangan dashboard interaktif untuk project ini.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3 style="color: var(--primary);">Dosen Pembimbing</h3>
+                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Ronny Susetyoko, S.Si, M.Si</h4>
+                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Alfi Fadliana, S.Si., M.Stat.</h4>
+                        <p>Memberikan bimbingan metodologis, validasi analisis, dan review hasil penelitian untuk memastikan kualitas akademik yang tinggi.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="margin-top: 2rem;">
+                <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Tujuan & Manfaat</h3>
+                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 1rem; text-align: justify;">
+                    Platform ini dirancang untuk memberikan insights yang actionable kepada pemangku kebijakan di tingkat provinsi dan kabupaten/kota. 
+                    Dengan visualisasi data yang interaktif dan komprehensif, stakeholder dapat:
+                </p>
+                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-left: 1.5rem; margin-top: 1rem;">
+                    <li>🔍 Memahami pola dan tren ketahanan pangan pada periode tertentu</li>
+                    <li>📊 Mengidentifikasi daerah prioritas untuk intervensi kebijakan</li>
+                    <li>💡 Membuat keputusan berbasis data yang lebih informed dan efektif</li>
+                    <li>📈 Memantau progress dan impact dari program ketahanan pangan</li>
+                    <li>🤝 Memfasilitasi kolaborasi antar stakeholder dengan data yang sama</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 FoodLens Jatim. Platform Analitik Ketahanan Pangan Provinsi Jawa Timur. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 12px;">Powered by Tableau | Built with ❤️ for Food Security Jatim</p>
+    </footer>
+
+    <script>
+        function showPage(id) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+
+            // Show selected page
+            document.getElementById('page-' + id).classList.add('active');
+            const navBtn = document.getElementById('nav-' + id);
+            if (navBtn) navBtn.classList.add('active');
+
+            // Load Tableau when dashboard is opened
+            if (id === 'dashboard' && !window.tableauLoaded) {
+                window.tableauLoaded = true;
+                const divElement = document.getElementById('viz1775825548370');
+                const vizElement = divElement.getElementsByTagName('object')[0];
+
+                vizElement.style.width = '100%';
+                vizElement.style.height = '900px';
+                vizElement.style.display = 'block';
+
+                const scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
