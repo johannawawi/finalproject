@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="id" style=""><head>
+<html lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>FoodLens Jatim — East Java Food Security Dashboard</title>
@@ -37,6 +37,7 @@
             background-color: #F8FAFC;
             color: #1E293B;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         .glass {
@@ -57,29 +58,61 @@
             font-weight: 700;
         }
 
+        /* Improved Page Transitions */
         .page {
             display: none;
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .page.active {
             display: block;
+            opacity: 1;
         }
 
-        @keyframes slideUp {
+        /* Micro-interactions: Cards & Buttons */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .btn-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* Scroll Reveal Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Entrance Stagger Animations */
+        @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .animate-entrance {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
         }
 
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
-        }
-
+        /* Tableau Styling */
         .browser-chrome {
             border-top-left-radius: 12px;
             border-top-right-radius: 12px;
@@ -91,11 +124,6 @@
             border: 1px solid #E2E8F0;
             border-bottom: none;
         }
-
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dot-red { background: #FF5F56; }
-        .dot-yellow { background: #FFBD2E; }
-        .dot-green { background: #27C93F; }
 
         .spinner {
             width: 40px;
@@ -112,7 +140,7 @@
     </style>
 </head>
 <body class="selection:bg-primary-light selection:text-primary-dark">
-<nav class="sticky top-0 z-[100] glass border-b border-slate-200">
+<nav class="sticky top-0 z-[100] glass border-b border-slate-200 animate-entrance">
 <div class="mx-auto px-6 h-18 flex items-center justify-between py-4 max-w-[1700px]">
 <div class="flex items-center gap-3 cursor-pointer group" onclick="showPage('home')">
 <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
@@ -121,40 +149,40 @@
 <span class="text-lg font-extrabold tracking-tight text-slate-900">FoodLens <span class="text-primary">Jatim</span></span>
 </div>
 <div class="hidden md:flex items-center gap-2">
-<button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors active" id="nav-home" onclick="showPage('home')">Beranda</button>
+<button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors" id="nav-home" onclick="showPage('home')">Beranda</button>
 <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors" id="nav-dashboard" onclick="showPage('dashboard')">Dashboard</button>
 <button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors" id="nav-about" onclick="showPage('about')">Tentang</button>
 </div>
-<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:shadow-xl hover:shadow-primary/20 active:scale-95" onclick="showPage('dashboard')">
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold btn-hover shadow-lg shadow-primary/10 active:scale-95" onclick="showPage('dashboard')">
                 Mulai Eksplorasi
             </button>
 </div>
 </nav>
 <!-- HOME PAGE -->
-<div class="page active" id="page-home">
+<div class="page" id="page-home">
 <section class="hero-gradient relative pt-20 pb-32 overflow-hidden">
 <div class="mx-auto px-6 grid md:grid-cols-2 gap-12 items-center max-w-[1700px]">
 <div class="z-10">
-<div class="inline-flex items-center gap-2 bg-primary-light text-primary px-3 py-1 rounded-full text-xs font-bold mb-6 border border-primary/10">
+<div class="inline-flex items-center gap-2 bg-primary-light text-primary px-3 py-1 rounded-full text-xs font-bold mb-6 border border-primary/10 animate-entrance" style="animation-delay: 0.1s">
 <span class="relative flex h-2 w-2">
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
 <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
 </span>
                         Sains Data Terapan
                     </div>
-<h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+<h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight animate-entrance" style="animation-delay: 0.2s">
                         Analitik <span class="text-primary">Ketahanan Pangan</span> Jawa Timur
                     </h1>
-<p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+<p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl animate-entrance" style="animation-delay: 0.3s">
                         Platform intelijen berbasis data untuk memantau, menganalisis, dan memprediksi stabilitas pangan di 38 kabupaten/kota melalui metodologi Machine Learning yang presisi.
                     </p>
-<div class="flex flex-wrap gap-4">
-<button class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20" onclick="showPage('dashboard')">
+<div class="flex flex-wrap gap-4 animate-entrance" style="animation-delay: 0.4s">
+<button class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 btn-hover shadow-lg shadow-primary/20" onclick="showPage('dashboard')">
                             Buka Dashboard Interaktif <span class="material-symbols-outlined">arrow_forward</span>
 </button>
 </div>
 </div>
-<div class="relative">
+<div class="relative animate-entrance" style="animation-delay: 0.5s">
 <div class="grid grid-cols-2 gap-4">
 <div class="space-y-4 pt-12">
 <div class="glass p-6 rounded-3xl border border-white shadow-xl card-hover">
@@ -194,7 +222,7 @@
 </div>
 </section>
 <!-- FEATURES -->
-<section class="py-24 bg-white">
+<section class="py-24 bg-white reveal">
 <div class="mx-auto px-6 max-w-[1700px]">
 <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
 <div class="max-w-2xl">
@@ -234,7 +262,7 @@
 </div>
 </section>
 <!-- METHODOLOGY -->
-<section class="py-24 bg-slate-50">
+<section class="py-24 bg-slate-50 reveal">
 <div class="mx-auto px-6 max-w-[1700px]">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <h2 class="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Metodologi &amp; Data Science</h2>
@@ -299,29 +327,29 @@
 </div>
 </section>
 <!-- DATA SOURCES -->
-<section class="py-24 bg-white">
+<section class="py-24 bg-white reveal">
 <div class="mx-auto px-6 max-w-[1700px]">
 <div class="grid md:grid-cols-2 gap-16 items-center">
 <div>
 <h2 class="text-3xl font-extrabold text-slate-900 mb-6 tracking-tight">Sumber Data Terpadu</h2>
 <p class="text-slate-500 mb-8 leading-relaxed">Data dikumpulkan dari berbagai sumber resmi dan terpercaya untuk memastikan akurasi serta konsistensi hasil analisis.</p>
 <div class="space-y-4">
-<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">01</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors cursor-default group">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">01</div>
 <div>
 <h4 class="font-bold text-slate-900">Badan Pangan Nasional (Bapanas)</h4>
 <p class="text-xs text-slate-500">Data aspek pemanfaatan pangan, prevalensi stunting, akses air bersih, dan rasio tenaga kesehatan.</p>
 </div>
 </div>
-<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">02</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors cursor-default group">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">02</div>
 <div>
 <h4 class="font-bold text-slate-900">Disperindag Jawa Timur</h4>
 <p class="text-xs text-slate-500">Data harga rata-rata komoditas bahan pokok utama sebagai indikator stabilitas harga pangan.</p>
 </div>
 </div>
-<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
-<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">03</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors cursor-default group">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">03</div>
 <div>
 <h4 class="font-bold text-slate-900">BKPM (Kementerian Investasi)</h4>
 <p class="text-xs text-slate-500">Data realisasi investasi untuk melengkapi gambaran aktivitas ekonomi daerah dalam analisis ketahanan pangan.</p>
@@ -329,11 +357,11 @@
 </div>
 </div>
 </div>
-<div class="bg-primary p-12 rounded-[2rem] text-white relative overflow-hidden">
+<div class="bg-primary p-12 rounded-[2rem] text-white relative overflow-hidden card-hover">
 <div class="relative z-10">
 <h3 class="text-2xl font-bold mb-4">Badan Pusat Statistik (BPS)</h3>
 <p class="text-emerald-100/80 mb-8 leading-relaxed">Data utama bersumber pada Badan Pusat Statistik Provinsi Jawa Timur, yang meliputi data makro ekonomi, produksi tanaman pangan, sanitasi, pengeluaran, dan indikator infrastruktur wilayah.</p>
-<button class="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm transition-transform hover:scale-105 active:scale-95" onclick="showPage('dashboard')">Eksplorasi Data Sekarang</button>
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm btn-hover" onclick="showPage('dashboard')">Eksplorasi Data Sekarang</button>
 </div>
 <span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[200px] text-white/10 rotate-12">database</span>
 </div>
@@ -345,7 +373,7 @@
 <div class="page" id="page-dashboard">
 <section class="py-12 bg-slate-50 min-h-screen">
 <div class="mx-auto px-6 max-w-[1700px]">
-<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 reveal">
 <div class="">
 <nav class="flex gap-2 mb-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
 <span class="">Platform</span>
@@ -365,7 +393,7 @@
 </div>
 </div>
 <!-- TABLEAU CONTAINER -->
-<div class="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-200">
+<div class="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-200 reveal">
 <div class="browser-chrome viz-toolbar">
 <div class="flex items-center justify-between w-full gap-4 px-2">
 <div class="flex items-center gap-2 text-slate-500 font-sans">
@@ -403,7 +431,7 @@
 <div class="page" id="page-about">
 <section class="py-24 bg-white">
 <div class="mx-auto px-6 max-w-[1700px]">
-<div class="mb-16">
+<div class="mb-16 reveal">
 <h2 class="text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Tentang FoodLens Jatim</h2>
 <div class="h-1.5 w-24 bg-primary rounded-full mb-10"></div>
 <div class="grid md:grid-cols-2 gap-12 items-start">
@@ -416,7 +444,7 @@
                                 Fokus utama adalah pada eksplorasi indikator multidimensional, identifikasi faktor dominan, dan pengembangan model klasifikasi yang robust untuk memprediksi tingkat ketahanan pangan di tingkat kabupaten/kota.
                             </p>
 </div>
-<div class="bg-primary-light p-8 rounded-3xl border border-primary/10">
+<div class="bg-primary-light p-8 rounded-3xl border border-primary/10 card-hover">
 <h3 class="text-xl font-bold text-primary mb-6">Informasi Kontak</h3>
 <div class="space-y-6">
 <div class="flex items-start gap-4">
@@ -450,7 +478,7 @@
 </div>
 </div>
 </div>
-<div class="py-16 border-t border-slate-100">
+<div class="py-16 border-t border-slate-100 reveal">
 <h3 class="text-2xl font-bold text-slate-900 mb-10 text-center">Tim Pengembang &amp; Peneliti</h3>
 <div class="grid md:grid-cols-2 gap-8">
 <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover">
@@ -479,7 +507,7 @@
 </div>
 </div>
 </div>
-<div class="py-16 border-t border-slate-100">
+<div class="py-16 border-t border-slate-100 reveal">
 <h3 class="text-2xl font-bold text-slate-900 mb-8">Tujuan &amp; Manfaat</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
 <div class="flex items-start gap-4">
@@ -516,9 +544,9 @@
 <p class="text-slate-400 text-sm max-w-xs text-center md:text-left">Solusi analisis ketahanan pangan terpadu berbasis Machine Learning untuk Provinsi Jawa Timur.</p>
 </div>
 <div class="flex gap-8">
-<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('home')">Beranda</a>
-<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('dashboard')">Dashboard</a>
-<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('about')">Tentang</a>
+<button class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" onclick="showPage('home')">Beranda</button>
+<button class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" onclick="showPage('dashboard')">Dashboard</button>
+<button class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" onclick="showPage('about')">Tentang</button>
 </div>
 </div>
 <div class="border-t border-slate-100 pt-10 text-center">
@@ -582,42 +610,70 @@
             const activeNav = document.getElementById('nav-' + id);
             if (activeNav) activeNav.classList.add('active');
 
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            const pages = document.querySelectorAll('.page');
             const targetPage = document.getElementById('page-' + id);
-            if (targetPage) targetPage.classList.add('active');
+
+            // Handle smooth transition
+            pages.forEach(page => {
+                if (page.classList.contains('active')) {
+                    page.style.opacity = '0';
+                    setTimeout(() => {
+                        page.classList.remove('active');
+                        targetPage.classList.add('active');
+                        requestAnimationFrame(() => {
+                            targetPage.style.opacity = '1';
+                        });
+                    }, 300);
+                } else if (!document.querySelector('.page.active')) {
+                     // Initial load case
+                    targetPage.classList.add('active');
+                    targetPage.style.opacity = '1';
+                }
+            });
 
             if (id === 'dashboard') {
-                setTimeout(initTableau, 100);
+                setTimeout(initTableau, 400);
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Re-trigger scroll reveals on page change
+            setTimeout(handleScrollReveal, 600);
         }
 
-        const observerOptions = {
-            threshold: 0.1
-        };
+        // Scroll Reveal Implementation
+        function handleScrollReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-            observer.observe(card);
-        });
+        // Use IntersectionObserver for more efficient revealing
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         // Ensure page always starts at Home
         window.addEventListener('load', () => {
             showPage('home');
+            
+            // Register scroll reveal elements
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
         });
+
+        window.addEventListener('scroll', handleScrollReveal);
     </script>
 </body></html>
