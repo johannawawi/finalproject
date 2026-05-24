@@ -1,831 +1,623 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodLens Jatim — East Java Food Security Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        :root {
-            --primary: #2D7C5E;
-            --primary-light: #E8F4F1;
-            --primary-mid: #5BA87F;
-            --primary-dark: #1E5239;
-            --bg: #FAFAF9;
-            --surface: #FFFFFF;
-            --border: #E5E3DE;
-            --text: #1A1A19;
-            --text-muted: #6B6B67;
-            --accent: #D4A574;
+<html lang="id" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FoodLens Jatim — East Java Food Security Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<!-- ✅ TABLEAU JS API v2 -->
+<script src="https://public.tableau.com/javascripts/api/tableau-2.9.2.min.js"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#065F46', // Deep Emerald
+                            light: '#ECFDF5',
+                            mid: '#10B981',
+                            dark: '#064E3B',
+                            accent: '#059669', // Professional Green-Tech accent
+                        },
+                        surface: '#FFFFFF',
+                        bg: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                }
+            }
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+    </script>
+<style>
         body {
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            font-size: 15px;
-            line-height: 1.6;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E293B;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ===== NAVIGATION ===== */
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--surface);
-            border-bottom: 0.5px solid var(--border);
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-            backdrop-filter: blur(8px);
-            background-color: rgba(255, 255, 255, 0.95);
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text);
-            cursor: pointer;
-            transition: opacity 0.2s;
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #ECFDF5 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, #F0FDF4 0%, transparent 40%);
         }
 
-        .nav-logo:hover {
-            opacity: 0.8;
+        .nav-link.active {
+            color: #065F46;
+            background: #ECFDF5;
+            font-weight: 700;
         }
 
-        .logo-mark {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(45, 124, 94, 0.15);
-        }
-
-        .logo-mark svg {
-            width: 18px;
-            height: 18px;
-            fill: none;
-            stroke: #fff;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-links button {
-            background: none;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: inherit;
-        }
-
-        .nav-links button:hover {
-            color: var(--text);
-            background: var(--primary-light);
-        }
-
-        .nav-links button.active {
-            color: var(--primary);
-            background: var(--primary-light);
-            font-weight: 600;
-        }
-
-        .nav-cta {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
-            box-shadow: 0 4px 12px rgba(45, 124, 94, 0.2);
-        }
-
-        .nav-cta:hover {
-            background: var(--primary-dark);
-            box-shadow: 0 6px 20px rgba(45, 124, 94, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* ===== PAGE TRANSITIONS ===== */
         .page {
             display: none;
-            animation: fadeIn 0.3s ease-out;
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .page.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ===== HERO SECTION ===== */
-        .hero {
-            padding: 7rem 2rem 6rem;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            animation: slideUp 0.6s ease-out;
-        }
-
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            color: var(--text);
-            letter-spacing: -0.02em;
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .hero h1 span {
-            color: var(--primary);
-            display: block;
-        }
-
-        .hero > p {
-            font-size: 16px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 13px 32px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-            transition: all 0.2s;
-            display: inline-block;
-            box-shadow: 0 4px 16px rgba(45, 124, 94, 0.2);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(45, 124, 94, 0.3);
-        }
-
-        .hero-accent {
-            margin-top: 4rem;
-            padding: 1rem;
-            background: var(--primary-light);
-            border-radius: 12px;
-            font-size: 14px;
-            color: var(--primary-dark);
-            border-left: 4px solid var(--primary);
-            text-align: left;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: justify;
-        }
-
-        /* ===== DASHBOARD PAGE ===== */
-        .dash-header {
-            padding: 2.5rem 2rem;
-            border-bottom: 0.5px solid var(--border);
-            background: var(--surface);
-        }
-
-        .dash-header-inner {
-            max-width: 1700px;
-            margin: 0 auto;
-        }
-
-        .dash-title h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-
-        .dash-title p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .badge {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 6px;
-            background: var(--primary-light);
-            color: var(--primary);
-            display: inline-block;
-            margin-top: 1rem;
-            margin-right: 0.5rem;
-        }
-
-        .badge.green {
-            background: #D4EDDA;
-            color: #1E5239;
-        }
-
-        /* ===== VIZ CONTAINER ===== */
-        .dash-body {
-            padding: 2rem;
-            max-width: 1700px;
-            margin: 0 auto;
-        }
-
-        .viz-container {
-            background: var(--surface);
-            border: 0.5px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            width: 100%;
-            max-width: 1620px;
-            margin: 0 auto;
-        }
-
-        .viz-toolbar {
-            padding: 16px 20px;
-            border-bottom: 0.5px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #fafaf9;
-        }
-
-        .viz-toolbar span {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .tableau-wrap {
-            width: 100%;
-            height: 900px;
-            position: relative;
-            background: white;
-        }
-
-        .tableauPlaceholder {
-            width: 100% !important;
-            height: 900px !important;
-            border: none;
-            display: block;
-        }
-
-        /* ===== INFO SECTIONS ===== */
-        .info-section {
-            padding: 3rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .info-section.alt {
-            background: var(--primary-light);
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 0.5px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .info-card:hover {
-            box-shadow: 0 8px 24px rgba(45, 124, 94, 0.1);
+        .card-hover:hover {
             transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
         }
 
-        .info-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
+        .browser-chrome {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            background: #F1F5F9;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             gap: 8px;
+            border: 1px solid #E2E8F0;
+            border-bottom: none;
         }
 
-        .info-card p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.7;
-            text-align: justify;
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot-red { background: #FF5F56; }
+        .dot-yellow { background: #FFBD2E; }
+        .dot-green { background: #27C93F; }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #E2E8F0;
+            border-top-color: #065F46;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .p {
-            text-align: justify;
-            text-justify: inter-word;
-        }
-
-        .icon {
-            width: 24px;
-            height: 24px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-        }
-
-        /* ===== ABOUT/CONTACT SECTION ===== */
-        .about-section {
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .about-section h2 {
-            font-family: 'Syne', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            color: var(--text);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .about-content p {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-            text-align: justify;
-        }
-
-        .contact-info {
-            background: var(--primary-light);
-            padding: 2rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .contact-info h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-item {
-            margin-bottom: 1.5rem;
-            font-size: 14px;
-        }
-
-        .contact-item strong {
-            color: var(--text);
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-item span {
-            color: var(--text-muted);
-        }
-
-        .contact-item a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        .divider {
-            height: 1px;
-            background: var(--border);
-            margin: 2rem 0;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 0.5px solid var(--border);
-            background: var(--surface);
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 3rem;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            nav {
-                height: auto;
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: space-around;
-            }
-
-            .hero {
-                padding: 4rem 1.5rem 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .dash-header {
-                padding: 1.5rem;
-            }
-
-            .dash-title h2 {
-                font-size: 20px;
-            }
-
-            .tableau-wrap {
-                height: 600px;
-            }
-
-            .tableauPlaceholder {
-                height: 600px !important;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body>
-
-    <nav>
-        <div class="nav-logo" onclick="showPage('home')">
-            <div class="logo-mark">
-                <svg viewBox="0 0 24 24">
-                    <path d="M4 20V10M10 20V4M16 20v-6M22 20v-8" stroke="white"/>
-                </svg>
-            </div>
-            FoodLens Jatim
-        </div>
-        <div class="nav-links">
-            <button class="active" id="nav-home" onclick="showPage('home')">Home</button>
-            <button id="nav-dashboard" onclick="showPage('dashboard')">Dashboard</button>
-            <button id="nav-about" onclick="showPage('about')">Tentang</button>
-        </div>
-        <button class="nav-cta" onclick="showPage('dashboard')">Buka Dashboard</button>
-    </nav>
-
-    <!-- HOME PAGE -->
-    <div id="page-home" class="page active">
-        <div class="hero">
-            <h1>Analitik <span>Ketahanan Pangan Wilayah Jawa Timur</span></h1>
-            <p>Platform visualisasi data interaktif untuk memantau dan menganalisis indikator ketahanan pangan di seluruh kabupaten/kota Provinsi Jawa Timur</p>
-            <button class="btn-primary" onclick="showPage('dashboard')">Lihat Dashboard Interaktif</button>
-            <div class="hero-accent">
-                <strong style="color: var(--primary);"> Dashboard Powered by Tableau Public Edition</strong><br>
-                Eksplorasi data ketahanan pangan melalui visualisasi interaktif yang mendalam dengan filter dinamis dan insights mendalam.
-            </div>
-        </div>
-
-        <!-- PENJELASAN DASHBOARD -->
-        <div class="info-section">
-            <div class="section-title">📈 Tentang Dashboard</div>
-            <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8; max-width: 100%; text-align: justify;">
-                Dashboard ini menyajikan hasil analisis komprehensif terhadap indikator-indikator ketahanan pangan di Provinsi Jawa Timur. 
-                Melalui visualisasi interaktif, Anda dapat mengeksplorasi pola distribusi, hubungan antar variabel, dan perbandingan tingkat 
-                ketahanan pangan antar kabupaten/kota. Data tersaji dalam bentuk yang mudah dipahami untuk mendukung pengambilan keputusan 
-                berbasis data oleh pemangku kebijakan.
-            </p>
-
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><span class="icon">🔍</span> Eksplorasi Univariat & Multivariat</h3>
-                    <p>Visualisasi pola distribusi indikator dan hubungan antar variabel ketahanan pangan untuk pemahaman mendalam tentang dinamika pangan regional.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">🎯</span> Identifikasi Indikator Dominan</h3>
-                    <p>Hasil analisis faktor menunjukkan indikator-indikator yang paling signifikan merepresentasikan masing-masing dimensi ketahanan pangan.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">🤖</span> Klasifikasi Berbasis Machine Learning</h3>
-                    <p>Model klasifikasi menggunakan perbandingan model klasifikasi Random Forest, GAM, dan Deep Neural Network untuk prediksi tingkat ketahanan pangan yang akurat.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- METODOLOGI -->
-        <div class="info-section alt">
-            <div class="section-title">🔬 Metodologi Penelitian</div>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3><span class="icon">📊</span> Analisis Faktor (FA)</h3>
-                    <p>Mengidentifikasi dan mengekstrak faktor-faktor dominan dari indikator ketahanan pangan dengan menggunakan metode Confirmatory Factor Analysis (CFA) untuk menguji variabel-variabel yang berkontribusi signifikan terhadap masing-masing dimensi.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">🌳</span> Random Forest (RF)</h3>
-                    <p>Algoritma ensemble learning yang menggabungkan multiple decision trees untuk klasifikasi tingkat ketahanan pangan dengan tingkat akurasi tinggi.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">📈</span> Generalized Additive Models (GAM)</h3>
-                    <p>Model semi-parametrik yang menangkap hubungan non-linear kompleks antara indikator dan tingkat ketahanan pangan dengan interpretabilitas tinggi.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">🧠</span> Deep Neural Network (DNN)</h3>
-                    <p>Arsitektur neural network deep learning untuk menangkap pola kompleks dan interaksi non-linear dalam data ketahanan pangan.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">🗺️</span> Scope Geografis</h3>
-                    <p>Analisis mencakup seluruh kabupaten/kota di Provinsi Jawa Timur dengan tingkat granularitas detail untuk insights yang actionable.</p>
-                </div>
-                <div class="info-card">
-                    <h3><span class="icon">⏱️</span> Temporal Coverage</h3>
-                    <p>Data dianalisis dalam periode waktu tertentu untuk menangkap tren dan pola perubahan tingkat ketahanan pangan dari waktu ke waktu.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SUMBER DATA -->
-        <div class="info-section">
-            <div class="section-title">📚 Sumber Data</div>
-
-            <p style="color: var(--text-muted); font-size: 15px; line-height: 1.8; margin-bottom: 2rem; text-align: justify;">
-                Data ketahanan pangan dalam dashboard ini dikumpulkan dari berbagai sumber resmi dan terpercaya untuk memastikan akurasi serta konsistensi analisis. 
-                Setiap variabel merepresentasikan aspek penting dalam ketahanan pangan yang diperoleh dari instansi pemerintah terkait.
-            </p>
-
-            <div class="info-grid">
-
-                <div class="info-card">
-                    <h3><span class="icon">🏛️</span> Badan Pusat Statistik (BPS)</h3>
-                    <p>
-                        Menyediakan data makro dan sosial ekonomi, meliputi produksi dan luas panen tanaman pangan, gini ratio, sanitasi layak, bantuan pangan, frekuensi bencana, PDRB dan pertumbuhan ekonomi, pengeluaran per kapita, tingkat pengangguran, indikator infrastruktur (minimarket, restoran, transportasi desa), serta angka harapan hidup.
-                    </p>
-                </div>
-
-                <div class="info-card">
-                    <h3><span class="icon">🥗</span> Badan Pangan Nasional (Bapanas)</h3>
-                    <p>
-                        Menyediakan data terkait aspek pemanfaatan pangan dan kesejahteraan masyarakat, meliputi persentase kemiskinan, 
-                        prevalensi stunting, rata-rata pendidikan ibu, akses air bersih, serta rasio tenaga kesehatan.
-                    </p>
-                </div>
-
-                <div class="info-card">
-                    <h3><span class="icon">💰</span> Dinas Perindustrian dan Perdagangan Jawa Timur</h3>
-                    <p>
-                        Menyediakan data harga bahan pokok, yang mencakup rata-rata harga komoditas utama seperti beras, telur, minyak goreng, 
-                        dan cabai sebagai indikator stabilitas harga pangan.
-                    </p>
-                </div>
-
-                <div class="info-card">
-                    <h3><span class="icon">📈</span> Kementerian Investasi / BKPM</h3>
-                    <p>
-                        Menyediakan data realisasi investasi daerahyang di gunakan untuk menggambarkan aktivitas ekonomi dan potensi 
-                        pengembangan wilayah dalam mendukung ketahanan pangan.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- DASHBOARD PAGE -->
-    <div id="page-dashboard" class="page">
-        <div class="dash-header">
-            <div class="dash-header-inner">
-                <div class="dash-title">
-                    <h2>Dashboard Interaktif</h2>
-                    <p>Ketahanan Pangan Provinsi Jawa Timur — Analisis Komprehensif Indikator & Klasifikasi Tingkat Ketahanan</p>
-                    <span class="badge green">Live</span>
-                    <span class="badge">Tableau Public</span>
-                </div>
-            </div>
-        </div>
-        <div class="dash-body">
-            <div class="viz-container">
-                <div class="viz-toolbar">
-                    <span>🔍 Jelajahi data secara interaktif — gunakan filter dan hover untuk detail</span>
-                </div>
-                <div class="tableau-wrap">
-                    <div class='tableauPlaceholder' id='viz1775825548370' style='position: relative'>
-                        <noscript>
-                            <a href='#'><img alt='Food Security Dashboard' src='https://public.tableau.com/static/images/PA/PA-FoodSecurity/PageOverview/1_rss.png' style='border: none' /></a>
-                        </noscript>
-                        <object class='tableauViz' style='display:none;'>
-                            <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                            <param name='embed_code_version' value='3' />
-                            <param name='site_root' value='' />
-                            <param name='name' value='PA-FoodSecurity&#47;PageOverview' />
-                            <param name='toolbar' value='yes' />
-                            <param name='static_image' value='https://public.tableau.com/static/images/PA/PA-FoodSecurity/PageOverview/1.png' />
-                            <param name='tabs' value='yes' />
-                            <param name='animate_transition' value='yes' />
-                            <param name='display_static_image' value='yes' />
-                            <param name='display_spinner' value='yes' />
-                            <param name='display_overlay' value='yes' />
-                            <param name='display_count' value='yes' />
-                            <param name='language' value='id' />
-                            <param name='showShareOptions' value='false' />
-                            <param name='showVizHome' value='no' />
-                            <param name='showTabs' value='no' />
-                            <param name='showToolbar' value='no' />
-
-                        </object>
+<body class="selection:bg-primary-light selection:text-primary-dark">
+<nav class="sticky top-0 z-[100] glass border-b border-slate-200">
+<div class="mx-auto px-6 h-18 flex items-center justify-between py-4 max-w-[1700px]">
+<div class="flex items-center gap-3 cursor-pointer group" onclick="showPage('home')">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-transform group-hover:scale-105">
+<span class="material-symbols-outlined text-white text-2xl">monitoring</span>
+</div>
+<span class="text-lg font-extrabold tracking-tight text-slate-900">FoodLens <span class="text-primary">Jatim</span></span>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors active" id="nav-home" onclick="showPage('home')">Beranda</button>
+<button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors" id="nav-dashboard" onclick="showPage('dashboard')">Dashboard</button>
+<button class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors" id="nav-about" onclick="showPage('about')">Tentang</button>
+</div>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all hover:shadow-xl hover:shadow-primary/20 active:scale-95" onclick="showPage('dashboard')">
+                Mulai Eksplorasi
+            </button>
+</div>
+</nav>
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+<section class="hero-gradient relative pt-20 pb-32 overflow-hidden">
+<div class="mx-auto px-6 grid md:grid-cols-2 gap-12 items-center max-w-[1700px]">
+<div class="z-10">
+<div class="inline-flex items-center gap-2 bg-primary-light text-primary px-3 py-1 rounded-full text-xs font-bold mb-6 border border-primary/10">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        Sains Data Terapan
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ABOUT PAGE -->
-    <div id="page-about" class="page">
-        <div class="about-section">
-            <h2>Tentang Final Project</h2>
-            <div class="about-grid">
-                <div class="about-content">
-                    <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Latar Belakang Project</h3>
-                    <p>
-                        Project ini adalah hasil dari penelitian mendalam tentang ketahanan pangan di Provinsi Jawa Timur. Melalui kombinasi 
-                        analisis faktor dan klasifikasi mengggunakan machine learning, penulis mengidentifikasi pola-pola penting dalam data ketahanan pangan 
-                        yang dapat digunakan untuk formulasi kebijakan yang lebih efektif.
+<h1 class="text-5xl md:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+                        Analitik <span class="text-primary">Ketahanan Pangan</span> Jawa Timur
+                    </h1>
+<p class="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+                        Platform intelijen berbasis data untuk memantau, menganalisis, dan memprediksi stabilitas pangan di 38 kabupaten/kota melalui metodologi Machine Learning yang presisi.
                     </p>
-                    <p>
-                        Fokus utama adalah pada eksplorasi indikator multidimensional, identifikasi faktor dominan, dan pengembangan model 
-                        klasifikasi yang robust untuk memprediksi tingkat ketahanan pangan di tingkat kabupaten/kota di Provinsi Jawa Timur.
-                    </p>
-                </div>
-                <div class="contact-info">
-                    <h3>📞 Informasi Kontak</h3>
-                    <div class="contact-item">
-                        <strong>Email</strong>
-                        <span><a href="mailto:info@foodlensjatim-analytics.id">work.johannawawi@gmail.com</a></span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Institusi</strong>
-                        <span>Program Studi D4 Sains Data Terapan, Politeknik Elektronika Negeri Surabaya</span>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Lokasi</strong>
-                        <span>Surabaya, Jawa Timur, Indonesia</span>
-                    </div>
-                </div>
-            </div>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20" onclick="showPage('dashboard')">
+                            Buka Dashboard Interaktif <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4 pt-12">
+<div class="glass p-6 rounded-3xl border border-white shadow-xl card-hover">
+<div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-emerald-600">check_circle</span>
+</div>
+<h4 class="text-3xl font-extrabold text-emerald-600">92.5%</h4>
+<p class="text-sm font-semibold text-slate-500">Sangat Tahan</p>
+</div>
+<div class="glass p-6 rounded-3xl border border-white shadow-xl card-hover bg-primary text-white">
+<div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white">settings_suggest</span>
+</div>
+<h4 class="text-xl font-bold mb-1">Model Klasifikasi</h4>
+<p class="text-sm opacity-80 leading-snug">Prediksi Tingkat Ketahanan</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="glass p-6 rounded-3xl border border-white shadow-xl card-hover">
+<div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-blue-600">database</span>
+</div>
+<h4 class="text-3xl font-extrabold text-slate-900">4+</h4>
+<p class="text-sm font-semibold text-slate-500">Sumber Institusi</p>
+</div>
+<div class="glass p-6 rounded-3xl border border-white shadow-xl card-hover">
+<div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-amber-600">psychology</span>
+</div>
+<h4 class="text-3xl font-extrabold text-slate-900">3</h4>
+<p class="text-sm font-semibold text-slate-500">Model Prediksi</p>
+</div>
+</div>
+</div>
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary-light rounded-full blur-3xl opacity-50 -z-10"></div>
+</div>
+</div>
+</section>
+<!-- FEATURES -->
+<section class="py-24 bg-white">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div class="max-w-2xl">
+<h2 class="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Dimensi Analitik Strategis</h2>
+<p class="text-slate-500 leading-relaxed">Platform ini mengintegrasikan metodologi statistik multivariat dan algoritma pembelajaran mesin untuk mengekstraksi wawasan mendalam mengenai struktur ketahanan pangan regional.</p>
+</div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-hover flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 mb-2">Eksplorasi Univariat &amp; Multivariat</h3>
+<p class="text-sm text-slate-500 leading-relaxed">Visualisasi pola distribusi indikator dan hubungan antar variabel ketahanan pangan untuk pemahaman mendalam.</p>
+</div>
+</div>
+<div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-hover flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 mb-2">Identifikasi Indikator Dominan</h3>
+<p class="text-sm text-slate-500 leading-relaxed">Hasil analisis faktor menunjukkan indikator paling signifikan merepresentasikan masing-masing dimensi ketahanan pangan.</p>
+</div>
+</div>
+<div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-hover flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary text-white rounded-2xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900 mb-2">Klasifikasi Machine Learning</h3>
+<p class="text-sm text-slate-500 leading-relaxed">Implementasi model Random Forest, GAM, dan DNN untuk klasifikasi tingkat ketahanan pangan yang presisi.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- METHODOLOGY -->
+<section class="py-24 bg-slate-50">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Metodologi &amp; Data Science</h2>
+<p class="text-slate-500">Rangkaian prosedur saintifik yang diimplementasikan untuk menjamin validitas inferensi dan reliabilitas hasil analisis data.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">account_tree</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Analisis Faktor (FA)</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Identifikasi faktor dominan menggunakan Confirmatory Factor Analysis (CFA) untuk memvalidasi variabel signifikan.</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">forest</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Random Forest (RF)</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Algoritma ensemble learning yang menggabungkan multiple decision trees untuk klasifikasi tingkat ketahanan pangan.</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">show_chart</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">GAM Analysis</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Generalized Additive Models untuk menangkap hubungan non-linear kompleks antara indikator pangan.</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">neurology</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Deep Neural Network</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Arsitektur neural network untuk mendeteksi pola interaksi fitur yang kompleks dalam dataset ketahanan pangan.</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">map</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Scope Geografis</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Analisis mencakup seluruh kabupaten/kota di Provinsi Jawa Timur dengan tingkat granularitas detail.</p>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl border border-slate-200 flex items-start gap-4 card-hover">
+<div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-xl">schedule</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 mb-1">Temporal Coverage</h4>
+<p class="text-sm text-slate-500 leading-relaxed">Data dianalisis dalam periode waktu tertentu untuk menangkap tren dan pola perubahan tingkat ketahanan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DATA SOURCES -->
+<section class="py-24 bg-white">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-3xl font-extrabold text-slate-900 mb-6 tracking-tight">Sumber Data Terpadu</h2>
+<p class="text-slate-500 mb-8 leading-relaxed">Data dikumpulkan dari berbagai sumber resmi dan terpercaya untuk memastikan akurasi serta konsistensi hasil analisis.</p>
+<div class="space-y-4">
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">01</div>
+<div>
+<h4 class="font-bold text-slate-900">Badan Pangan Nasional (Bapanas)</h4>
+<p class="text-xs text-slate-500">Data aspek pemanfaatan pangan, prevalensi stunting, akses air bersih, dan rasio tenaga kesehatan.</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">02</div>
+<div>
+<h4 class="font-bold text-slate-900">Disperindag Jawa Timur</h4>
+<p class="text-xs text-slate-500">Data harga rata-rata komoditas bahan pokok utama sebagai indikator stabilitas harga pangan.</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+<div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 font-bold text-slate-400">03</div>
+<div>
+<h4 class="font-bold text-slate-900">BKPM (Kementerian Investasi)</h4>
+<p class="text-xs text-slate-500">Data realisasi investasi untuk melengkapi gambaran aktivitas ekonomi daerah dalam analisis ketahanan pangan.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary p-12 rounded-[2rem] text-white relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-4">Badan Pusat Statistik (BPS)</h3>
+<p class="text-emerald-100/80 mb-8 leading-relaxed">Data utama bersumber pada Badan Pusat Statistik Provinsi Jawa Timur, yang meliputi data makro ekonomi, produksi tanaman pangan, sanitasi, pengeluaran, dan indikator infrastruktur wilayah.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-bold text-sm transition-transform hover:scale-105 active:scale-95" onclick="showPage('dashboard')">Eksplorasi Data Sekarang</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-10 -right-10 text-[200px] text-white/10 rotate-12">database</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- DASHBOARD PAGE -->
+<div class="page" id="page-dashboard">
+<section class="py-12 bg-slate-50 min-h-screen">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="">
+<nav class="flex gap-2 mb-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+<span class="">Platform</span>
+<span class="">/</span>
+<span class="text-primary">Interactive Analytics</span>
+</nav>
+<h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Dashboard Ketahanan Pangan</h2>
+<p class="text-slate-500 text-sm mt-2">Analisis komprehensif indikator &amp; klasifikasi tingkat ketahanan pangan Provinsi Jawa Timur.</p>
+</div>
+<div class="flex gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold border border-emerald-200">
+<span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Live Status
+                        </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold border border-blue-200">
+                            Tableau Public Edition
+                        </span>
+</div>
+</div>
+<!-- TABLEAU CONTAINER -->
+<div class="bg-white rounded-3xl overflow-hidden shadow-2xl shadow-slate-200/50 border border-slate-200">
+<div class="browser-chrome viz-toolbar">
+<div class="flex items-center justify-between w-full gap-4 px-2">
+<div class="flex items-center gap-2 text-slate-500 font-sans">
+<span class="material-symbols-outlined text-lg">search</span>
+<span class="text-xs font-semibold">Jelajahi data secara interaktif — gunakan filter dan hover untuk detail</span>
+</div>
+<div class="flex items-center bg-slate-200/50 p-1 rounded-xl border border-slate-200 gap-1">
+<button class="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-primary-accent bg-white hover:bg-primary-accent hover:text-white rounded-lg border border-slate-200/60 transition-all active:scale-95 shadow-sm font-sans" onclick="exportPDF()">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                                    Ekspor PDF
+                                </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-bold text-primary-accent bg-white hover:bg-primary-accent hover:text-white rounded-lg border border-slate-200/60 transition-all active:scale-95 shadow-sm font-sans" onclick="exportImage()">
+<span class="material-symbols-outlined text-sm">image</span>
+                                    Ekspor PNG
+                                </button>
+</div>
+</div>
+</div>
+<div class="relative bg-white" style="height: 900px; width: 100%;">
+<!-- ✅ Container untuk Tableau API v2 -->
+<div class="w-full h-full" id="tableauViz" style="height: 900px; width: 100%; position: relative;">
+<!-- Loading state -->
+<div class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm" id="viz-loading">
+<div class="spinner mb-4"></div>
+<p class="text-sm font-bold text-slate-900">Menyiapkan Dashboard Interaktif...</p>
+<p class="text-xs text-slate-400 mt-1">Mengambil data terbaru dari server Tableau</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+<section class="py-24 bg-white">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="mb-16">
+<h2 class="text-4xl font-extrabold text-slate-900 mb-6 tracking-tight">Tentang FoodLens Jatim</h2>
+<div class="h-1.5 w-24 bg-primary rounded-full mb-10"></div>
+<div class="grid md:grid-cols-2 gap-12 items-start">
+<div class="space-y-6">
+<h3 class="text-xl font-bold text-primary">Latar Belakang Project</h3>
+<p class="text-slate-600 leading-relaxed text-justify">
+                                Project ini adalah hasil dari penelitian mendalam tentang ketahanan pangan di Provinsi Jawa Timur. Melalui kombinasi analisis faktor dan klasifikasi menggunakan machine learning, kami mengidentifikasi pola-pola penting dalam data ketahanan pangan yang dapat digunakan untuk formulasi kebijakan yang lebih efektif.
+                            </p>
+<p class="text-slate-600 leading-relaxed text-justify">
+                                Fokus utama adalah pada eksplorasi indikator multidimensional, identifikasi faktor dominan, dan pengembangan model klasifikasi yang robust untuk memprediksi tingkat ketahanan pangan di tingkat kabupaten/kota.
+                            </p>
+</div>
+<div class="bg-primary-light p-8 rounded-3xl border border-primary/10">
+<h3 class="text-xl font-bold text-primary mb-6">Informasi Kontak</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary/60 uppercase">Email Korespondensi</p>
+<a class="text-slate-900 font-bold hover:text-primary transition-colors" href="mailto:work.johannawawi@gmail.com">work.johannawawi@gmail.com</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary/60 uppercase">Institusi</p>
+<p class="text-slate-900 font-bold">D4 Sains Data Terapan, Politeknik Elektronika Negeri Surabaya</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-primary shadow-sm shrink-0">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary/60 uppercase">Lokasi</p>
+<p class="text-slate-900 font-bold">Surabaya, Jawa Timur, Indonesia</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="py-16 border-t border-slate-100">
+<h3 class="text-2xl font-bold text-slate-900 mb-10 text-center">Tim Pengembang &amp; Peneliti</h3>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold">JW</div>
+<div>
+<h4 class="font-bold text-slate-900">Johan Winarwan Nawawi</h4>
+<p class="text-sm text-primary font-semibold">Penulis &amp; Analis Data</p>
+</div>
+</div>
+<p class="text-sm text-slate-500 leading-relaxed">Mahasiswa D4 Sains Data Terapan yang melakukan penelitian mendalam dan pengembangan platform analitik ini untuk mengidentifikasi variabel strategis ketahanan pangan.</p>
+</div>
+<div class="p-8 rounded-3xl bg-slate-50 border border-slate-200 card-hover">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 text-slate-500 rounded-full flex items-center justify-center bg-primary">
+<span class="material-symbols-outlined text-white">groups</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Dosen Pembimbing</h4>
+<p class="text-sm text-primary font-semibold">Akademik &amp; Validasi</p>
+</div>
+</div>
+<p class="text-sm text-slate-500 mb-1 font-bold">Ronny Susetyoko, S.Si, M.Si</p>
+<p class="text-sm text-slate-500 mb-4 font-bold">Alfi Fadliana, S.Si., M.Stat.</p>
+<p class="text-sm text-slate-500 leading-relaxed">Memberikan bimbingan metodologis dan validasi saintifik terhadap model klasifikasi serta interpretasi data yang dihasilkan.</p>
+</div>
+</div>
+</div>
+<div class="py-16 border-t border-slate-100">
+<h3 class="text-2xl font-bold text-slate-900 mb-8">Tujuan &amp; Manfaat</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+<div class="flex items-start gap-4">
+<span class="text-primary mt-1 material-symbols-outlined">check_circle</span>
+<p class="text-slate-600 text-sm leading-relaxed">Memahami pola dan tren ketahanan pangan pada periode tertentu untuk antisipasi dini.</p>
+</div>
+<div class="flex items-start gap-4">
+<span class="text-primary mt-1 material-symbols-outlined">check_circle</span>
+<p class="text-slate-600 text-sm leading-relaxed">Mengidentifikasi daerah prioritas untuk intervensi kebijakan yang lebih tepat sasaran.</p>
+</div>
+<div class="flex items-start gap-4">
+<span class="text-primary mt-1 material-symbols-outlined">check_circle</span>
+<p class="text-slate-600 text-sm leading-relaxed">Membuat keputusan berbasis data yang lebih informed dan efektif bagi stakeholder.</p>
+</div>
+<div class="flex items-start gap-4">
+<span class="text-primary mt-1 material-symbols-outlined">check_circle</span>
+<p class="text-slate-600 text-sm leading-relaxed">Memantau progress dan impact dari program ketahanan pangan secara berkelanjutan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<footer class="bg-white border-t border-slate-200 pt-20 pb-10">
+<div class="mx-auto px-6 max-w-[1700px]">
+<div class="flex flex-col md:flex-row justify-between items-center gap-12 mb-16">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">monitoring</span>
+</div>
+<span class="text-lg font-extrabold tracking-tight text-slate-900">FoodLens Jatim</span>
+</div>
+<p class="text-slate-400 text-sm max-w-xs text-center md:text-left">Solusi analisis ketahanan pangan terpadu berbasis Machine Learning untuk Provinsi Jawa Timur.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('home')">Beranda</a>
+<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('dashboard')">Dashboard</a>
+<a class="text-sm font-bold text-slate-600 hover:text-primary transition-colors" href="#" onclick="showPage('about')">Tentang</a>
+</div>
+</div>
+<div class="border-t border-slate-100 pt-10 text-center">
+<p class="text-slate-400 text-xs font-medium mb-2">© FoodLens Jatim. Platform Analitik Ketahanan Pangan Provinsi Jawa Timur. All rights reserved.</p>
+<div class="flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-slate-300 font-bold">
+<span class="">Built with ❤️ for Food Security</span>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<span class="">Powered by Tableau API</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        let viz = null;
 
-            <div class="divider"></div>
+        function initTableau() {
+            if (viz) return;
 
-            <div style="margin-top: 2rem;">
-                <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Tim Peneliti</h3>
-                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 1rem; text-align: justify;">
-                    Project ini dikerjakan oleh mahasiswa Sains Data Terapan didampingi oleh dosen pembimbing dengan expertise di bidang data science:
-                </p>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3 style="color: var(--primary);">Penulis</h3>
-                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Johan Winarwan Nawawi</h4>
-                        <p>Mahasiswa D4 Sains Data Terapan di Politeknik Elektronika Negeri Surabaya yang melakukan penelitian, analisis data, dan pengembangan dashboard interaktif untuk project ini.</p>
-                    </div>
-                    <div class="info-card">
-                        <h3 style="color: var(--primary);">Dosen Pembimbing</h3>
-                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Ronny Susetyoko, S.Si, M.Si</h4>
-                        <h4 style="color: var(--primary); margin-top: 0.25rem;">Alfi Fadliana, S.Si., M.Stat.</h4>
-                        <p>Memberikan bimbingan metodologis, validasi analisis, dan review hasil penelitian untuk memastikan kualitas akademik yang tinggi.</p>
-                    </div>
-                </div>
-            </div>
+            const containerDiv = document.getElementById("tableauViz");
+            const url = "https://public.tableau.com/views/PA-FoodSecurity/PageOverview";
 
-            <div class="divider"></div>
+            const options = {
+                hideTabs: true,
+                hideToolbar: true,
+                width: "100%",
+                height: "900px",
+                onFirstInteractive: function () {
+                    const loading = document.getElementById("viz-loading");
+                    if (loading) {
+                        loading.style.opacity = '0';
+                        setTimeout(() => {
+                            loading.style.display = "none";
+                        }, 500);
+                    }
+                }
+            };
 
-            <div style="margin-top: 2rem;">
-                <h3 style="font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 1rem;">Tujuan & Manfaat</h3>
-                <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 1rem; text-align: justify;">
-                    Platform ini dirancang untuk memberikan insights yang actionable kepada pemangku kebijakan di tingkat provinsi dan kabupaten/kota. 
-                    Dengan visualisasi data yang interaktif dan komprehensif, stakeholder dapat:
-                </p>
-                <ul style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-left: 1.5rem; margin-top: 1rem;">
-                    <li>🔍 Memahami pola dan tren ketahanan pangan pada periode tertentu</li>
-                    <li>📊 Mengidentifikasi daerah prioritas untuk intervensi kebijakan</li>
-                    <li>💡 Membuat keputusan berbasis data yang lebih informed dan efektif</li>
-                    <li>📈 Memantau progress dan impact dari program ketahanan pangan</li>
-                    <li>🤝 Memfasilitasi kolaborasi antar stakeholder dengan data yang sama</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
 
-    <footer>
-        <p>© 2026 FoodLens Jatim. Platform Analitik Ketahanan Pangan Provinsi Jawa Timur. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 12px;">Powered by Tableau | Built with ❤️ for Food Security Jatim</p>
-    </footer>
+        function exportPDF() {
+            if (viz) {
+                viz.showExportPDFDialog();
+            } else {
+                console.warn("Viz not initialized yet.");
+            }
+        }
 
-    <script>
+        function exportImage() {
+            if (viz) {
+                viz.showExportImageDialog();
+            } else {
+                console.warn("Viz not initialized yet.");
+            }
+        }
+
         function showPage(id) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeNav = document.getElementById('nav-' + id);
+            if (activeNav) activeNav.classList.add('active');
 
-            // Show selected page
-            document.getElementById('page-' + id).classList.add('active');
-            const navBtn = document.getElementById('nav-' + id);
-            if (navBtn) navBtn.classList.add('active');
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            const targetPage = document.getElementById('page-' + id);
+            if (targetPage) targetPage.classList.add('active');
 
-            // Load Tableau when dashboard is opened
-            if (id === 'dashboard' && !window.tableauLoaded) {
-                window.tableauLoaded = true;
-                const divElement = document.getElementById('viz1775825548370');
-                const vizElement = divElement.getElementsByTagName('object')[0];
-
-                vizElement.style.width = '100%';
-                vizElement.style.height = '900px';
-                vizElement.style.display = 'block';
-
-                const scriptElement = document.createElement('script');
-                scriptElement.src = 'https://public.tableau.com/javascripts/api/tableau-2.min.js';
-                vizElement.parentNode.insertBefore(scriptElement, vizElement);
+            if (id === 'dashboard') {
+                setTimeout(initTableau, 100);
             }
 
-            // Scroll to top
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    </script>
 
-</body>
-</html>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(card);
+        });
+
+        // Ensure page always starts at Home
+        window.addEventListener('load', () => {
+            showPage('home');
+        });
+    </script>
+</body></html>
