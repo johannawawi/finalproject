@@ -155,8 +155,8 @@
         }
 
         .browser-chrome {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
             background: #F1F5F9;
             padding: 12px 16px;
             display: flex;
@@ -469,8 +469,7 @@
                         <div class="mb-8 pb-4 border-b border-slate-100 dark:border-slate-800/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
                                 <h4 class="text-lg font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-                                    <span translate="no" class="notranslate material-symbols-outlined text-primary dark:text-primary-mid">auto_stories</span>
-                                    Dokumentasi Visual: Panduan Interpretasi Grafik
+                                    Panduan Interpretasi Grafik
                                 </h4>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Petunjuk teknis membaca 4 components halaman utama pada modul analitik FoodLens Jatim</p>
                             </div>
@@ -483,15 +482,15 @@
                             
                             <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
                                 <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="panduan-peta.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-4 text-center hidden">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-3xl mb-1">map</span>
-                                        <p class="text-[11px] font-bold">Gambar: panduan-peta.png</p>
-                                    </div>
+                                    <img src="headerfoodlens.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+
+                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                    </button>
                                 </div>
                                 <div>
                                     <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span> Halaman 1: Sebaran Tematik
+                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Overview
                                     </h5>
                                     
                                     <button onclick="toggleCardDetail('detail-peta', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
@@ -507,15 +506,15 @@
 
                             <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
                                 <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="panduan-tren.png" alt="Panduan Membaca Tren Indikator" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-4 text-center hidden">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-3xl mb-1">show_chart</span>
-                                        <p class="text-[11px] font-bold">Gambar: panduan-tren.png</p>
-                                    </div>
+                                    <img src="panduan-peta.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+
+                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                    </button>
                                 </div>
                                 <div>
                                     <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span> Halaman 2: Grafik Tren Multivariat
+                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Factor Analysis
                                     </h5>
                                     
                                     <button onclick="toggleCardDetail('detail-tren', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
@@ -531,15 +530,15 @@
 
                             <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
                                 <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="panduan-ml.png" alt="Panduan Klasifikasi Machine Learning" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-4 text-center hidden">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-3xl mb-1">smart_toy</span>
-                                        <p class="text-[11px] font-bold">Gambar: panduan-ml.png</p>
-                                    </div>
+                                    <img src="panduan-peta.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+
+                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                    </button>
                                 </div>
                                 <div>
                                     <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span> Halaman 3: Output Klasifikasi ML
+                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Food Security Class
                                     </h5>
                                     
                                     <button onclick="toggleCardDetail('detail-ml', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
@@ -555,15 +554,15 @@
 
                             <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
                                 <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="panduan-faktor.png" alt="Panduan Faktor Dominan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-                                    <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 p-4 text-center hidden">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-3xl mb-1">analytics</span>
-                                        <p class="text-[11px] font-bold">Gambar: panduan-faktor.png</p>
-                                    </div>
+                                    <img src="panduan-peta.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+
+                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                    </button>
                                 </div>
                                 <div>
                                     <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span> Halaman 4: Matriks Korelasi Indikator
+                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Detail Wilayah
                                     </h5>
                                     
                                     <button onclick="toggleCardDetail('detail-faktor', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
@@ -590,9 +589,9 @@
             <div class="mx-auto px-6 max-w-[1700px]">
                 <div class="mb-16 reveal">
                     <nav class="flex gap-2 mb-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        <span>Research</span>
+                        <span>Riset</span>
                         <span>/</span>
-                        <span class="text-primary">Background</span>
+                        <span class="text-primary">Latar Belakang</span>
                     </nav>
                     <h2 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">Tentang Riset FoodLens Jatim</h2>
                     <div class="h-1.5 w-24 bg-primary rounded-full mb-10"></div>
@@ -645,10 +644,10 @@
                     <div class="mb-10 reveal">
                         <div class="flex flex-wrap gap-3 pb-6 border-b border-slate-100 dark:border-slate-800">
                             <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700 active" onclick="switchAboutTab('sec-latar', this)">01 · LATAR BELAKANG</button>
-                            <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-masalah', this)">02 · MASALAH & TUJUAN</button>
+                            <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-masalah', this)">02 · MASALAH DAN TUJUAN</button>
                             <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-data', this)">03 · DATASET</button>
                             <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-metode', this)">04 · METODOLOGI</button>
-                            <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-temuan', this)">05 · TEMUAN</button>
+                            <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-temuan', this)">05 · HASIL DAN TEMUAN</button>
                             <button class="subnav-pill px-6 py-2.5 rounded-full text-xs font-bold border border-slate-200 dark:border-slate-700" onclick="switchAboutTab('sec-rekomendasi', this)">06 · IMPLIKASI</button>
                         </div>
                     </div>
@@ -656,37 +655,76 @@
                     <div class="reveal" id="about-tabs-content">
                         <div class="acc-section active" id="sec-latar">
                             <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Latar Belakang</h2>
-                            <p class="text-lg text-slate-500 dark:text-slate-400 mb-10" text-justify>Jawa Timur sebagai lumbung pangan nasional menghadapi tantangan stabilitas...</p>
-                            <div class="p-10 rounded-3xl bg-slate-50 dark:bg-darkSurface border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
-                                Penelitian ini menjawab tantangan kompleksitas data pangan melalui platform analitik terpadu yang mempermudah monitoring kerentanan daerah.
+                            <p class="text-md text-slate-500 dark:text-slate-400 mb-10" style="text-align: justify;">Indonesia memperoleh skor 60,2 dan menempati peringkat ke-63 dari 113 negara pada Global Food Security Index (GFSI) 2022, masih berada di bawah rata-rata global sebesar 62,1. Kondisi ini menunjukkan bahwa tantangan ketahanan pangan tidak hanya berkaitan dengan ketersediaan pangan, tetapi juga mencakup aspek aksesibilitas, distribusi, kualitas, dan keberlanjutan sistem pangan (The Economist Intelligence Unit, 2022; Andaresta dkk., 2024).</p>
+                            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-darkSurface border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
+                                Sebagai salah satu lumbung pangan nasional, Jawa Timur menghasilkan 9,27 juta ton gabah kering giling (GKG) pada tahun 2024 atau sekitar 17,44% dari total produksi padi nasional (BPS Provinsi Jawa Timur, 2025). Meskipun seluruh kabupaten/kota di Jawa Timur berada dalam kategori "Tahan" dan "Sangat Tahan" berdasarkan Indeks Ketahanan Pangan (IKP) 2024 (Badan Pangan Nasional, 2024), indikator komposit tersebut belum sepenuhnya mampu menggambarkan variasi karakteristik dan kerentanan pangan pada tingkat wilayah (Valentina dkk., 2024). Oleh karena itu, diperlukan pendekatan berbasis data science untuk mengidentifikasi pola ketahanan pangan secara lebih komprehensif serta mendukung penyusunan kebijakan yang tepat sasaran dan berbasis bukti.
+                            </div>
+                            <!-- Referensi -->
+                            <div class="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800">
+                                <h3 class="text-sm font-semibold text-slate-600 dark:text-slate-400 mb-2">
+                                    Referensi
+                                </h3>
+
+                                <div class="text-xs text-slate-500 dark:text-slate-500 leading-relaxed text-justify space-y-1">
+                                    <p>Badan Pangan Nasional. (2024). <i>Indeks Ketahanan Pangan Kabupaten/Kota Tahun 2024</i>.</p>
+
+                                    <p>Badan Pusat Statistik Provinsi Jawa Timur. (2025). <i>Luas Panen, Produktivitas, dan Produksi Padi Menurut Kabupaten/Kota di Provinsi Jawa Timur Tahun 2024</i>.</p>
+
+                                    <p>Andaresta, D. P., Retnowati, D., Fatmawati, A., &amp; Purnomo, S. D. (2024). <i>Analisis Faktor yang Mempengaruhi Ketahanan Pangan di Indonesia</i>.</p>
+
+                                    <p>The Economist Intelligence Unit. (2022). <i>Global Food Security Index 2022</i>.</p>
+
+                                    <p>Valentina, A., Fianty, M. I., Mashur, T. R., &amp; Laurenzia, K. A. (2024). <i>Dashboard Visualization of Food Security in Indonesia: Addressing Challenges of Food Distribution and Access</i>.</p>
+                                </div>
                             </div>
                         </div>
                         <div class="acc-section" id="sec-masalah">
-                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Permasalahan & Tujuan</h2>
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Permasalahan dan Tujuan</h2>
                             <div class="grid md:grid-cols-2 gap-10">
-                                <div class="p-8 rounded-3xl bg-red-50/10 dark:bg-red-950/10 border border-red-100 dark:border-red-900/50">
-                                    <h4 class="text-red-700 dark:text-red-400 font-bold mb-6 flex items-center gap-2">
-                                        <span translate="no" class="notranslate material-symbols-outlined">report_problem</span> <span>Rumusan Masalah</span>
+                                <div class="p-8 rounded-3xl bg-red-50/10 dark:bg-red-950/10 border border-red-100 dark:border-red-900/50 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                                    <h4 class="text-red-700 dark:text-red-400 font-bold mb-6 flex items-center gap-2 tracking-tight text-lg">
+                                        <span>Rumusan Masalah</span>
                                     </h4>
                                     <ul class="space-y-4">
-                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400">
-                                            <span class="font-black text-red-600">01</span> <span>Mengidentifikasi indikator signifikan melalui Factor Analysis.</span>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class="font-black text-red-600 bg-red-50 dark:bg-red-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">01</span> 
+                                            <span class="leading-relaxed w-full">Analisis ketahanan pangan masih didominasi pendekatan deskriptif sehingga belum mampu menggambarkan pola dan karakteristik data secara menyeluruh.</span>
                                         </li>
-                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400">
-                                            <span class="font-black text-red-600">02</span> <span>Membangun model Machine Learning presisi untuk klasifikasi status pangan.</span>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-red-600 bg-red-50 dark:bg-red-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">02</span> 
+                                            <span class="leading-relaxed w-full">Variasi tingkat ketahanan pangan antar kabupaten/kota belum teridentifikasi secara komprehensif.</span>
+                                        </li>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-red-600 bg-red-50 dark:bg-red-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">03</span> 
+                                            <span class="leading-relaxed w-full">Indikator dominan yang merepresentasikan dimensi ketahanan pangan belum diketahui secara jelas.</span>
+                                        </li>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-red-600 bg-red-50 dark:bg-red-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">04</span> 
+                                            <span class="leading-relaxed w-full">Belum tersedia platform analitik terpadu yang mengintegrasikan eksplorasi data, pemodelan machine learning, dan visualisasi interaktif.</span>
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="p-8 rounded-3xl bg-emerald-50/10 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/50">
-                                    <h4 class="text-emerald-700 dark:text-emerald-400 font-bold mb-6 flex items-center gap-2">
-                                        <span translate="no" class="notranslate material-symbols-outlined">verified</span> <span>Tujuan Penelitian</span>
+
+                                <div class="p-8 rounded-3xl bg-emerald-50/10 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/50 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                                    <h4 class="text-emerald-700 dark:text-emerald-400 font-bold mb-6 flex items-center gap-2 tracking-tight text-lg">
+                                        <span>Tujuan Penelitian</span>
                                     </h4>
                                     <ul class="space-y-4">
-                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400">
-                                            <span class="font-black text-emerald-600">01</span> <span>Validasi variabel dominan yang mewakili setiap dimensi pangan.</span>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">01</span> 
+                                            <span class="leading-relaxed w-full">Mengeksplorasi karakteristik indikator ketahanan pangan melalui analisis univariat dan multivariat.</span>
                                         </li>
-                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400">
-                                            <span class="font-black text-emerald-600">02</span> <span>Visualisasi interaktif untuk pemantauan real-time tingkat ketahanan.</span>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">02</span> 
+                                            <span class="leading-relaxed w-full">Mengidentifikasi faktor-faktor dominan yang merepresentasikan dimensi ketahanan pangan.</span>
+                                        </li>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">03</span> 
+                                            <span class="leading-relaxed w-full">Membangun model klasifikasi tingkat ketahanan pangan menggunakan Random Forest, Generalized Additive Models (GAMs), dan Deep Neural Network (DNN).</span>
+                                        </li>
+                                        <li class="flex gap-4 text-sm text-slate-600 dark:text-slate-400 text-justify break-words">
+                                            <span class=" font-black text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 w-7 h-7 flex items-center justify-center rounded-lg flex-shrink-0">04</span> 
+                                            <span class="leading-relaxed w-full">Mengembangkan dashboard analitik interaktif untuk mendukung monitoring dan pengambilan keputusan berbasis data.</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -700,131 +738,559 @@
                                 <table class="w-full text-left border-collapse bg-white dark:bg-darkSurface">
                                     <thead>
                                         <tr class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Nama Variabel</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Sumber Data</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Satuan</th>
+                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-left">Simbol</th>
+                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-left">Nama Variabel</th>
+                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-left">Keterangan</th>
+                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-left">Sumber</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300 text-sm">
                                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Rasio Konsumsi Normatif per Kapita</td>
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X1</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Produksi Tanaman Pangan</td>
+                                            <td class="px-6 py-4 text-justify">Total produksi tahunan padi, jagung, ketela pohon, dan ubi jalar</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X2</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Luas Panen Tanaman Pangan</td>
+                                            <td class="px-6 py-4 text-justify">Luas lahan panen untuk komoditas padi, jagung, ketela pohon, dan ubi jalar</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X3</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Harga Bahan Pokok (Rata-rata)</td>
+                                            <td class="px-6 py-4 text-justify">Rata-rata harga komoditas seperti beras, telur, minyak, dan cabai rawit</td>
+                                            <td class="px-6 py-4">Disperindag Jawa Timur</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X4</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Persentase Kemiskinan</td>
+                                            <td class="px-6 py-4 text-justify">Persentase penduduk yang hidup di bawah garis kemiskinan</td>
                                             <td class="px-6 py-4">Bapanas</td>
-                                            <td class="px-6 py-4">Persen (%)</td>
                                         </tr>
                                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Persentase Penduduk Miskin</td>
-                                            <td class="px-6 py-4">BPS Jawa Timur</td>
-                                            <td class="px-6 py-4">Persen (%)</td>
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X5</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Gini Ratio</td>
+                                            <td class="px-6 py-4 text-justify">Indikator ketimpangan distribusi pendapatan</td>
+                                            <td class="px-6 py-4">BPS</td>
                                         </tr>
                                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Luas Lahan Pertanian Produktif</td>
-                                            <td class="px-6 py-4">BPS Jawa Timur</td>
-                                            <td class="px-6 py-4">Hektar (Ha)</td>
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X6</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Prevalensi Stunting</td>
+                                            <td class="px-6 py-4 text-justify">Persentase balita yang mengalami stunting</td>
+                                            <td class="px-6 py-4">Bapanas</td>
                                         </tr>
                                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Prevalensi Balita Stunting</td>
-                                            <td class="px-6 py-4">Kemenkes / Bapanas</td>
-                                            <td class="px-6 py-4">Persen (%)</td>
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X7</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Rata-rata Pendidikan Ibu</td>
+                                            <td class="px-6 py-4 text-justify">Rata-rata lama sekolah ibu (perempuan) sebagai indikator pemanfaatan pangan</td>
+                                            <td class="px-6 py-4">Bapanas</td>
                                         </tr>
                                         <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
-                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Aksesibilitas Air Bersih Rumah Tangga</td>
-                                            <td class="px-6 py-4">BPS / Bapanas</td>
-                                            <td class="px-6 py-4">Persen (%)</td>
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X8</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Tanpa Air Bersih</td>
+                                            <td class="px-6 py-4 text-justify">Persentase rumah tangga tanpa akses air bersih</td>
+                                            <td class="px-6 py-4">Bapanas</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X9</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Akses Sanitasi Layak</td>
+                                            <td class="px-6 py-4 text-justify">Persentase rumah tangga dengan sanitasi layak</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X10</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Kebijakan Bantuan Pangan</td>
+                                            <td class="px-6 py-4 text-justify">Jumlah dan jenis bansos terkait pangan yang disalurkan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X11</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Frekuensi Bencana Alam</td>
+                                            <td class="px-6 py-4 text-justify">Jumlah kejadian bencana alam yang mempengaruhi stabilitas pangan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X12</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">PDRB</td>
+                                            <td class="px-6 py-4 text-justify">Produk Domestik Regional Bruto per tahun</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X13</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Pertumbuhan PDRB</td>
+                                            <td class="px-6 py-4 text-justify">Laju pertumbuhan ekonomi daerah</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X14</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Pengeluaran Sebulan per Kapita Rumah Tangga</td>
+                                            <td class="px-6 py-4 text-justify">Biaya yang dikeluarkan untuk konsumsi semua anggota rumah tangga selama sebulan dibagi dengan banyaknya anggota rumah tangga.</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X15</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Tingkat Pengangguran Terbuka</td>
+                                            <td class="px-6 py-4 text-justify">Persentase angkatan kerja yang tidak memiliki pekerjaan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X16</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Realisasi Investasi</td>
+                                            <td class="px-6 py-4 text-justify">Total nilai investasi yang terealisasi dalam setahun</td>
+                                            <td class="px-6 py-4">Kemeninveshil/ BKPM</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X17</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Desa memiliki Minimarket</td>
+                                            <td class="px-6 py-4 text-justify">Banyaknya desa yang memiliki minimarket sebagai indikator akses pangan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X18</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Jumlah Restoran</td>
+                                            <td class="px-6 py-4 text-justify">Banyaknya restoran yang menyediakan konsumsi pangan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X19</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Transportasi Umum di Desa</td>
+                                            <td class="px-6 py-4 text-justify">Banyaknya desa mempunyai layanan transportasi umum di wilayah pedesaan</td>
+                                            <td class="px-6 py-4">BPS</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X20</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Rasio Tenaga Kesehatan</td>
+                                            <td class="px-6 py-4 text-justify">Perbandingan jumlah tenaga kesehatan dengan jumlah penduduk di suatu wilayah.</td>
+                                            <td class="px-6 py-4">Bapanas</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                            <td class="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">X21</td>
+                                            <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">Angka Harapan Hidup (AHH)</td>
+                                            <td class="px-6 py-4 text-justify">Rata-rata perkiraan jumlah tahun yang akan menjalani oleh seseorang sejak ia dilahirkan, berdasarkan kondisi mortalitas (kematian) pada tahun tertentu</td>
+                                            <td class="px-6 py-4">BPS</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
-                        <div class="acc-section" id="sec-metode">
-                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Metodologi Riset</h2>
-                            <div class="grid md:grid-cols-3 gap-6">
-                                <div class="p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover">
-                                    <span translate="no" class="notranslate material-symbols-outlined text-primary mb-4">account_tree</span>
-                                    <h4 class="font-bold mb-2">CFA Analysis</h4>
-                                    <p class="text-xs text-slate-500 text-justify">Confirmatory Factor Analysis untuk identifikasi faktor dominan.</p>
-                                </div>
-                                <div class="p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover">
-                                    <span translate="no" class="notranslate material-symbols-outlined text-primary mb-4">forest</span>
-                                    <h4 class="font-bold mb-2">Random Forest</h4>
-                                    <p class="text-xs text-slate-500 text-justify">Algoritma ensemble untuk klasifikasi status ketahanan pangan.</p>
-                                </div>
-                                <div class="p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover">
-                                    <span translate="no" class="notranslate material-symbols-outlined text-primary mb-4">neurology</span>
-                                    <h4 class="font-bold mb-2">DNN Models</h4>
-                                    <p class="text-xs text-slate-500 text-justify">Deep Neural Network untuk menangkap interaksi fitur yang kompleks.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="acc-section" id="sec-temuan">
-                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">Temuan & Hasil Riset</h2>
-                            <p class="text-slate-500 dark:text-slate-400 mb-8 text-sm text-justify">Metrik performa hasil evaluasi komparatif dari ketiga arsitektur model Machine Learning.</p>
-
-                            <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm mb-8">
-                                <table class="w-full text-left border-collapse bg-white dark:bg-darkSurface">
-                                    <thead>
-                                        <tr class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Arsitektur Model</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Akurasi (Accuracy)</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Presisi (Precision)</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Sensitivitas (Recall)</th>
-                                            <th class="px-6 py-4 text-xs font-bold uppercase tracking-wider">Status Evaluasi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-600 dark:text-slate-300 text-sm">
-                                        <tr class="bg-emerald-50/60 dark:bg-emerald-950/30 font-semibold text-emerald-900 dark:text-emerald-300 border-l-4 border-emerald-500">
-                                            <td class="px-6 py-4 flex items-center gap-2">
-                                                <span translate="no" class="notranslate material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-lg">workspace_premium</span>
-                                                Random Forest (Ensemble)
-                                            </td>
-                                            <td class="px-6 py-4 text-emerald-700 dark:text-emerald-400 font-extrabold text-base">91.00%</td>
-                                            <td class="px-6 py-4">90.50%</td>
-                                            <td class="px-6 py-4">91.20%</td>
-                                            <td class="px-6 py-4">
-                                                <span class="px-2.5 py-1 bg-emerald-200/60 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 rounded-full text-xs font-bold">Terbaik (Selected)</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors opacity-75">
-                                            <td class="px-6 py-4 pl-10">Deep Neural Network (DNN)</td>
-                                            <td class="px-6 py-4">87.50%</td>
-                                            <td class="px-6 py-4">86.80%</td>
-                                            <td class="px-6 py-4">87.10%</td>
-                                            <td class="px-6 py-4">
-                                                <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-full text-xs font-medium">Standar</span>
-                                            </td>
-                                        </tr>
-                                        <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors opacity-75">
-                                            <td class="px-6 py-4 pl-10">Generalized Additive Model (GAM)</td>
-                                            <td class="px-6 py-4">82.15%</td>
-                                            <td class="px-6 py-4">81.90%</td>
-                                            <td class="px-6 py-4">83.00%</td>
-                                            <td class="px-6 py-4">
-                                                <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 rounded-full text-xs font-medium">Standar</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="p-8 rounded-3xl bg-primary text-white shadow-xl">
-                                <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="acc-section mb-10 overflow-x-auto pb-6" id="sec-metode">
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-8">Alur Proses Riset</h2>
+                            
+                            <div class="flex flex-col md:flex-row items-stretch justify-between gap-6 md:gap-0 min-w-[900px] md:min-w-0">
+                                
+                                <div class="flex-1 flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover min-h-[280px] relative">
                                     <div>
-                                        <h4 class="text-2xl font-bold mb-4">97,37% Kabupaten/Kota</h4>
-                                        <p class="opacity-80 leading-relaxed">Teridentifikasi masuk dalam kategori Sangat Tahan Pangan pada periode 2024 berdasarkan model klasifikasi Random Forest yang terpilih sebagai model dengan performa terbaik.</p>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Tahap I</span>
+                                            <span class="text-5xl font-black text-slate-100/70 dark:text-slate-800/30 select-none">01</span>
+                                        </div>
+                                        <h4 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Persiapan</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 text-justify leading-relaxed">
+                                            Pembersihan data dari outliers, normalisasi variabel, dan penanganan missing values.
+                                        </p>
                                     </div>
-                                    <div class="text-center">
-                                        <div class="text-6xl font-black mb-2">91%</div>
-                                        <p class="text-xs font-bold tracking-widest uppercase opacity-70">Akurasi Model Validasi</p>
+                                    <div class="flex flex-wrap gap-2 mt-6">
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Data Acquisition
+                                        </span>
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Data Cleaning
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="hidden md:flex items-center justify-center w-12 relative">
+                                    <div class="w-full h-[2px] bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-700"></div>
+                                    <div class="absolute w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] text-slate-400 font-bold shadow-sm">➔</div>
+                                </div>
+
+                                <div class="flex-1 flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover min-h-[280px] relative">
+                                    <div>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Tahap II</span>
+                                            <span class="text-5xl font-black text-slate-100/70 dark:text-slate-800/30 select-none">02</span>
+                                        </div>
+                                        <h4 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Analisis Faktor</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 text-justify leading-relaxed">
+                                            Identifikasi indikator dominan menggunakan Confirmatory Factor Analysis (CFA) untuk memperoleh variabel yang paling representatif.
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mt-6">
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Feature Selection
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="hidden md:flex items-center justify-center w-12 relative">
+                                    <div class="w-full h-[2px] bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-700"></div>
+                                    <div class="absolute w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] text-slate-400 font-bold shadow-sm">➔</div>
+                                </div>
+
+                                <div class="flex-1 flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover min-h-[280px] relative">
+                                    <div>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Tahap III</span>
+                                            <span class="text-5xl font-black text-slate-100/70 dark:text-slate-800/30 select-none">03</span>
+                                        </div>
+                                        <h4 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Modeling</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 text-justify leading-relaxed">
+                                            Pelatihan model klasifikasi Random Forest, Generalized Additive Models (GAM), dan Deep Learning.
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mt-6">
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Training & Evaluasi
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="hidden md:flex items-center justify-center w-12 relative">
+                                    <div class="w-full h-[2px] bg-gradient-to-r from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-700"></div>
+                                    <div class="absolute w-6 h-6 rounded-full bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] text-slate-400 font-bold shadow-sm">➔</div>
+                                </div>
+
+                                <div class="flex-1 flex flex-col justify-between p-6 rounded-2xl bg-white dark:bg-darkSurface border border-slate-200 dark:border-slate-800 card-hover min-h-[280px] relative">
+                                    <div>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Tahap IV</span>
+                                            <span class="text-5xl font-black text-slate-100/70 dark:text-slate-800/30 select-none">04</span>
+                                        </div>
+                                        <h4 class="font-bold text-xl text-slate-900 dark:text-white mb-2">Dashboard</h4>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 text-justify leading-relaxed">
+                                            Integrasi hasil pemodelan ke dalam platform visualisasi Tableau Public untuk konsumsi eksekutif dan pembuat kebijakan.
+                                        </p>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mt-6">
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Deployment
+                                        </span>
+                                        <span class="inline-block bg-emerald-500 text-white text-[11px] font-semibold px-4 py-1.5 rounded-full shadow-sm shadow-emerald-500/20">
+                                            Tableau Public
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="acc-section mb-10" id="sec-temuan">
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-2">Temuan dan Hasil Riset</h2>
+                            <p class="text-slate-500 dark:text-slate-400 mb-8 text-sm text-justify">Berikut merupakan hasil analisis statis deskriptif, uji kelayakan model melalui Confirmatory Factor Analysis (CFA), serta metrik performa hasil evaluasi komparatif dari arsitektur model Machine Learning.</p>
+
+                            <div class="mb-10">
+                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-3">Hasil Goodness of Fit Confirmatory Factor Analysis (CFA)</h3>
+                                
+                                <div class="mb-4">
+                                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                                        <table class="w-full text-left border-collapse bg-white dark:bg-darkSurface text-sm text-slate-600 dark:text-slate-300">
+                                            <thead>
+                                                <tr class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800 font-bold text-xs uppercase tracking-wider">
+                                                    <th class="px-6 py-4">Kriteria</th>
+                                                    <th class="px-6 py-4">Cut Off Value</th>
+                                                    <th class="px-6 py-4">Hasil</th>
+                                                    <th class="px-6 py-4">Evaluasi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-semibold text-slate-900 dark:text-white">CFI</td>
+                                                    <td class="px-6 py-4">≥ 0.90</td>
+                                                    <td class="px-6 py-4 font-bold text-emerald-600 dark:text-emerald-400">0,93</td>
+                                                    <td class="px-6 py-4"><span class="px-2.5 py-1 text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 rounded-md border border-emerald-200 dark:border-emerald-900/30">Memenuhi</span></td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-semibold text-slate-900 dark:text-white">TLI</td>
+                                                    <td class="px-6 py-4">≥ 0.90</td>
+                                                    <td class="px-6 py-4 font-bold text-emerald-600 dark:text-emerald-400">0,91</td>
+                                                    <td class="px-6 py-4"><span class="px-2.5 py-1 text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 rounded-md border border-emerald-200 dark:border-emerald-900/30">Memenuhi</span></td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-semibold text-slate-900 dark:text-white">GFI</td>
+                                                    <td class="px-6 py-4">≥ 0.90</td>
+                                                    <td class="px-6 py-4 font-bold text-emerald-600 dark:text-emerald-400">0,92</td>
+                                                    <td class="px-6 py-4"><span class="px-2.5 py-1 text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 rounded-md border border-emerald-200 dark:border-emerald-900/30">Memenuhi</span></td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-semibold text-slate-900 dark:text-white">AGFI</td>
+                                                    <td class="px-6 py-4">≥ 0.90</td>
+                                                    <td class="px-6 py-4 font-bold text-emerald-600 dark:text-emerald-400">0,90</td>
+                                                    <td class="px-6 py-4"><span class="px-2.5 py-1 text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400 rounded-md border border-emerald-200 dark:border-emerald-900/30">Memenuhi</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <p class="text-xs text-slate-500 dark:text-slate-400 text-justify leading-relaxed mb-6 pl-2 border-l-2 border-slate-300 dark:border-slate-700">
+                                    Pada Tabel di atas dapat dilihat bahwa seluruh indeks kelayakan yang ditampilkan, yaitu CFI, TLI, GFI, dan AGFI, telah melampaui nilai cut-off 0,90. Hasil ini menunjukkan bahwa model akhir memiliki tingkat kesesuaian yang baik.
+                                </p>
+
+                                <div class="mb-6">
+                                    <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                                        <table class="w-full text-left border-collapse bg-white dark:bg-darkSurface text-sm text-slate-600 dark:text-slate-300">
+                                            <thead>
+                                                <tr class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800 font-bold text-xs uppercase tracking-wider">
+                                                    <th class="px-6 py-4">Konstruk</th>
+                                                    <th class="px-6 py-4">Indikator</th>
+                                                    <th class="px-6 py-4">Estimate</th>
+                                                    <th class="px-6 py-4">p-value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white bg-slate-50/30 dark:bg-slate-800/10" rowspan="3">Access</td>
+                                                    <td class="px-6 py-4 font-medium">kemiskinan</td>
+                                                    <td class="px-6 py-4">1,000</td>
+                                                    <td class="px-6 py-4 text-slate-400">-</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">keluarga_penerima_bansos</td>
+                                                    <td class="px-6 py-4">0,856</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">pengeluaran_kapita</td>
+                                                    <td class="px-6 py-4 text-rose-600 dark:text-rose-400 font-medium">-0,863</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white bg-slate-50/30 dark:bg-slate-800/10" rowspan="3">Availability</td>
+                                                    <td class="px-6 py-4 font-medium">produksi_jagung</td>
+                                                    <td class="px-6 py-4">1,000</td>
+                                                    <td class="px-6 py-4 text-slate-400">-</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">produksi_padi</td>
+                                                    <td class="px-6 py-4">0,927</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">produksi_kedelai</td>
+                                                    <td class="px-6 py-4">0,665</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white bg-slate-50/30 dark:bg-slate-800/10" rowspan="3">Economy</td>
+                                                    <td class="px-6 py-4 font-medium">pengangguran</td>
+                                                    <td class="px-6 py-4">1,000</td>
+                                                    <td class="px-6 py-4 text-slate-400">-</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">pdrb</td>
+                                                    <td class="px-6 py-4">0,958</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">gini_ratio</td>
+                                                    <td class="px-6 py-4">0,858</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white bg-slate-50/30 dark:bg-slate-800/10" rowspan="3">Stability</td>
+                                                    <td class="px-6 py-4 font-medium">total_bencana</td>
+                                                    <td class="px-6 py-4">1,000</td>
+                                                    <td class="px-6 py-4 text-slate-400">-</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">harga_cabai</td>
+                                                    <td class="px-6 py-4">0,655</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,001</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">harga_beras</td>
+                                                    <td class="px-6 py-4">0,710</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,001</td>
+                                                </tr>
+
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                    <td class="px-6 py-4 font-bold text-slate-900 dark:text-white bg-slate-50/30 dark:bg-slate-800/10" rowspan="4">Utilization</td>
+                                                    <td class="px-6 py-4 font-medium">lama_sekolah_pr</td>
+                                                    <td class="px-6 py-4">1,000</td>
+                                                    <td class="px-6 py-4 text-slate-400">-</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">sanitasi_layak</td>
+                                                    <td class="px-6 py-4">0,717</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">ahh</td>
+                                                    <td class="px-6 py-4">0,711</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                                <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                    <td class="px-6 py-4 font-medium">rasio_tenaga_kesehatan</td>
+                                                    <td class="px-6 py-4 text-rose-600 dark:text-rose-400 font-medium">-0,647</td>
+                                                    <td class="px-6 py-4 text-emerald-600 font-medium">0,000</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-3">Evaluasi Performa Algoritma Machine Learning</h3>
+                                <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                                    <table class="w-full text-left border-collapse bg-white dark:bg-darkSurface text-sm text-slate-600 dark:text-slate-300">
+                                        <thead>
+                                            <tr class="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800 font-bold text-xs uppercase tracking-wider">
+                                                <th class="px-6 py-4">Model Utama</th>
+                                                <th class="px-6 py-4">Skenario</th>
+                                                <th class="px-6 py-4">Akurasi</th>
+                                                <th class="px-6 py-4">Presisi</th>
+                                                <th class="px-6 py-4">Recall</th>
+                                                <th class="px-6 py-4">F1-Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800">
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-bold text-slate-900 dark:text-white" rowspan="3">Random Forest</td>
+                                                <td class="px-6 py-4 font-medium">Baseline</td>
+                                                <td class="px-6 py-4">89.4%</td>
+                                                <td class="px-6 py-4">89.1%</td>
+                                                <td class="px-6 py-4">89.4%</td>
+                                                <td class="px-6 py-4">88.7%</td>
+                                            </tr>
+                                            <tr class="bg-emerald-50/60 dark:bg-emerald-950/30 font-semibold text-emerald-900 dark:text-emerald-300 border-l-4 border-emerald-500">
+                                                <td class="px-6 py-4 flex items-center gap-2 font-bold text-emerald-700 dark:text-emerald-400">
+                                                    <span translate="no" class="notranslate material-symbols-outlined text-emerald-600 dark:text-emerald-400 text-lg">star</span>
+                                                    ROS
+                                                </td>
+                                                <td class="px-6 py-4 text-emerald-700 dark:text-emerald-400 font-extrabold text-base">90.9%</td>
+                                                <td class="px-6 py-4">90.8%</td>
+                                                <td class="px-6 py-4">90.9%</td>
+                                                <td class="px-6 py-4">90.5%</td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-medium">ROS Tuned</td>
+                                                <td class="px-6 py-4">90.1%</td>
+                                                <td class="px-6 py-4">91.4%</td>
+                                                <td class="px-6 py-4">90.1%</td>
+                                                <td class="px-6 py-4">90.4%</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                <td class="px-6 py-4 font-bold text-slate-900 dark:text-white" rowspan="3">GAMs</td>
+                                                <td class="px-6 py-4 font-medium">Baseline</td>
+                                                <td class="px-6 py-4">86.9%</td>
+                                                <td class="px-6 py-4">86.4%</td>
+                                                <td class="px-6 py-4">86.9%</td>
+                                                <td class="px-6 py-4">86.6%</td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-medium">ROS</td>
+                                                <td class="px-6 py-4">82.8%</td>
+                                                <td class="px-6 py-4">85.8%</td>
+                                                <td class="px-6 py-4">82.8%</td>
+                                                <td class="px-6 py-4">83.9%</td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-medium">ROS Tuned</td>
+                                                <td class="px-6 py-4">85.8%</td>
+                                                <td class="px-6 py-4">87.8%</td>
+                                                <td class="px-6 py-4">85.8%</td>
+                                                <td class="px-6 py-4">86.5%</td>
+                                            </tr>
+
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors border-t border-slate-200 dark:border-slate-800">
+                                                <td class="px-6 py-4 font-bold text-slate-900 dark:text-white" rowspan="3">Deep Neural Network (DNN)</td>
+                                                <td class="px-6 py-4 font-medium">Baseline</td>
+                                                <td class="px-6 py-4">87.2%</td>
+                                                <td class="px-6 py-4">87.0%</td>
+                                                <td class="px-6 py-4">87.2%</td>
+                                                <td class="px-6 py-4">87.1%</td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-medium">ROS</td>
+                                                <td class="px-6 py-4">85.4%</td>
+                                                <td class="px-6 py-4">85.1%</td>
+                                                <td class="px-6 py-4">85.4%</td>
+                                                <td class="px-6 py-4">85.2%</td>
+                                            </tr>
+                                            <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+                                                <td class="px-6 py-4 font-medium">ROS Tuned</td>
+                                                <td class="px-6 py-4">86.9%</td>
+                                                <td class="px-6 py-4">86.8%</td>
+                                                <td class="px-6 py-4">86.9%</td>
+                                                <td class="px-6 py-4">86.8%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                            <div class="p-8 rounded-3xl bg-primary text-white shadow-xl mt-12">                                 
+                                <div class="grid md:grid-cols-3 gap-8 items-center">
+                                    <div class="md:col-span-2 space-y-4 text-sm text-justify opacity-90 leading-relaxed">
+                                        <p>
+                                            Rangkaian riset berhasil memetakan ketahanan pangan di 38 kabupaten/kota Jawa Timur (2018–2024). Melalui <strong>Exploratory Data Analysis (EDA)</strong>, ditemukan ketimpangan struktural yang tajam pada sektor produksi dan kapasitas ekonomi antarwilayah, sementara sektor kesehatan cenderung homogen. 
+                                        </p>
+                                        <p>
+                                            Temuan ini divalidasi secara kokoh lewat <strong>Confirmatory Factor Analysis (CFA)</strong> menggunakan 16 indikator dari 5 dimensi. Hasilnya membuktikan bahwa <span class="text-emerald-300 font-semibold">dimensi akses dan ekonomi</span> memegang kendali lebih kuat dalam menentukan ketahanan pangan dibanding aspek ketersediaan. Model CFA ini teruji sangat layak dengan metrik yang presisi (<span class="text-emerald-300 font-semibold">CFI=0,93; TLI=0,91; GFI=0,92; AGFI=0,90</span>).
+                                        </p>
+                                        <p>
+                                            Pada tahap prediktif, algoritma <strong>Random Forest + Random Over Sampling (ROS)</strong> mengungguli GAMs dan DNN dalam memetakan dinamika kerawanan pangan, khususnya di wilayah 3T. Seluruh kecerdasan buatan dan analisis faktor ini telah diintegrasikan ke dalam <strong>Dashboard Interaktif Tableau</strong> (Overview, Factor Analysis, Food Security Class) untuk menghasilkan kebijakan berbasis data yang dinamis dan tepat sasaran.
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="text-center md:border-l md:border-white/20 py-4">
+                                        <div class="text-6xl font-black mb-1 text-emerald-300">91%</div>
+                                        <p class="text-xs font-bold tracking-widest uppercase opacity-80 mb-4">Akurasi Prediksi</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="acc-section" id="sec-rekomendasi">
-                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Implikasi & Rekomendasi</h2>
-                            <div class="p-10 rounded-3xl bg-slate-50 dark:bg-darkSurface border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 leading-relaxed text-justify">
-                                Hasil penelitian ini memberikan implikasi strategis bagi pengambil kebijakan di Jawa Timur untuk memprioritaskan intervensi pada indikator dominan yang teridentifikasi, guna mempertahankan status ketahanan pangan yang tinggi di seluruh wilayah.
+                            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">Implikasi dan Rekomendasi</h2>
+                            
+                            <div class="p-8 md:p-10 rounded-2xl bg-slate-50 dark:bg-darkSurface border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                                <!-- Kalimat Pengantar -->
+                                <p class="text-base font-semibold text-slate-900 dark:text-white mb-10 tracking-tight text-justify">
+                                    Hasil penelitian memberikan implikasi strategis dan arah transformasi kebijakan berbasis data bagi Pemerintah Provinsi Jawa Timur melalui tiga aspek utama:
+                                </p>
+
+                                <!-- Layout 1 Kolom Mengalir ke Bawah -->
+                                <div class="space-y-8">
+                                    
+                                    <!-- Poin 1 -->
+                                    <div class="group flex flex-col md:flex-row items-start gap-4 md:gap-8 pb-8 border-b border-slate-200/60 dark:border-slate-800/60">
+                                        <div class="flex-shrink-0 flex items-center gap-3 md:flex-col md:items-start w-full md:w-56">
+                                            <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Pergeseran Fokus Strategis</h2>
+                                        </div>
+                                        <div class="flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left text-justify">
+                                            Validasi model CFA membuktikan bahwa dimensi <strong>akses dan ekonomi</strong> memiliki pengaruh yang jauh lebih kuat dalam menentukan tingkat ketahanan pangan daerah dibandingkan dimensi ketersediaan fisik. Implikasinya, intervensi pemerintah harus digeser dari yang awalnya berfokus di hulu (seperti genjot produksi pertanian) menuju penguatan di sektor hilir, yaitu <strong>peningkatan daya beli masyarakat</strong> dan kapasitas ekonomi wilayah.
+                                        </div>
+                                    </div>
+
+                                    <!-- Poin 2 -->
+                                    <div class="group flex flex-col md:flex-row items-start gap-4 md:gap-8 pb-8 border-b border-slate-200/60 dark:border-slate-800/60">
+                                        <div class="flex-shrink-0 flex items-center gap-3 md:flex-col md:items-start w-full md:w-56">
+                                            <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Intervensi Wilayah Asimetris</h2>
+                                        </div>
+                                        <div class="flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left text-justify">
+                                            Ditemukannya ketimpangan struktural pada indikator produksi dan ekonomi menunjukkan bahwa kebijakan pangan di Jawa Timur tidak bisa disamaratakan (one-size-fits-all). Wilayah dengan kapasitas ekonomi rendah memerlukan stimulus jaring pengaman sosial, sementara dinamika kenaikan kelas pada <strong>wilayah berkarakter 3T</strong> perlu dievaluasi programnya untuk direplikasi ke daerah rentan lainnya.
+                                        </div>
+                                    </div>
+
+                                    <!-- Poin 3 -->
+                                    <div class="group flex flex-col md:flex-row items-start gap-4 md:gap-8">
+                                        <div class="flex-shrink-0 flex items-center gap-3 md:flex-col md:items-start w-full md:w-56">
+                                            <h2 class="text-base font-bold text-slate-900 dark:text-white tracking-tight">Decision Support System</h2>
+                                        </div>
+                                        <div class="flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed text-left text-justify">
+                                            Dengan <strong>memanfaatkan Dashboard Analitik Tableau</strong> yang mengintegrasikan model prediktif Random Forest (Akurasi 91%), pemangku kebijakan kini dapat melakukan pemantauan kondisi ketahanan pangan secara interaktif. Fitur filter tahun dan wilayah mempermudah eksplorasi data secara dinamis untuk menghasilkan keputusan yang tepat sasaran di tingkat kabupaten/kota.
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -832,6 +1298,17 @@
 
             </div>
         </section>
+    </div>
+
+    <div id="globalImageModal" class="fixed inset-0 z-[9999] hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-8 md:p-16 opacity-0 transition-opacity duration-300" onclick="closePremiumModal()">
+        
+        <button onclick="closePremiumModal()" class="absolute top-4 right-4 md:top-8 md:right-8 w-11 h-11 flex items-center justify-center rounded-full bg-rose-600 hover:bg-rose-700 text-white shadow-lg shadow-rose-600/20 transition-all duration-200 z-20 hover:scale-105 active:scale-95 border border-rose-500 flex-shrink-0" title="Tutup dan Kembali">
+            <span translate="no" class="notranslate material-symbols-outlined text-xl block font-bold leading-none">close</span>
+        </button>
+        
+        <div class="w-full max-w-[90vw] md:max-w-[60vw] max-h-[75vh] relative transform scale-95 transition-transform duration-300 flex items-center justify-center" onclick="event.stopPropagation()">
+            <img id="globalModalImg" src="" alt="Preview Besar" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl border border-white/15 bg-slate-900/40"/>
+        </div>
     </div>
 
     <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-20 pb-10 transition-colors duration-300" id="main-footer">
@@ -859,6 +1336,47 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function openPremiumModal(buttonElement) {
+            // 1. Cari elemen gambar (<img>) yang berada dalam satu kotak dengan tombol yang diklik
+            const container = buttonElement.parentElement;
+            const targetImg = container.querySelector('img');
+            
+            // 2. Ambil boks modal global dan tag <img> di dalam modal
+            const modal = document.getElementById('globalImageModal');
+            const modalImg = document.getElementById('globalModalImg');
+            
+            // 3. Tembakkan sumber gambar (src) ke dalam modal
+            modalImg.src = targetImg.src;
+            
+            // 4. Munculkan modal (Ubah hidden jadi flex)
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // 5. Jalankan animasi fade-in & pop-up halus (efek transisi)
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closePremiumModal() {
+            const modal = document.getElementById('globalImageModal');
+            
+            // 1. Jalankan animasi mengecil dan fade-out
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            
+            // 2. Sembunyikan total setelah animasi selesai (300ms)
+            setTimeout(() => {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
 
     <script type="text/javascript">
         function googleTranslateElementInit() {
