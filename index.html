@@ -464,7 +464,7 @@
                 </div>
 
                 <div id="konten-panduan" class="w-full hidden opacity-0 transition-all duration-500 ease-in-out transform -translate-y-4 reveal">
-                    <div class="bg-white dark:bg-darkSurface rounded-3xl border border-slate-200 dark:border-slate-800 p-8 shadow-xl">
+                    <div class="bg-white dark:bg-darkSurface rounded-3xl border border-slate-200 dark:border-slate-800 p-8">
                         
                         <div class="mb-8 pb-4 border-b border-slate-100 dark:border-slate-800/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <div>
@@ -478,108 +478,242 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- GRID UTAMA: KOLOM KIRI & KOLOM KANAN BERDIRI SENDIRI -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                             
-                            <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
-                                <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="./asset/HomePage.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                            <!-- ================= KOLOM KIRI ================= -->
+                            <div class="space-y-8">
+                                
+                                <!-- KARTU 1: OVERVIEW -->
+                                <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
+                                    <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
+                                        <img src="./asset/HomePage.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                                        <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                            <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Overview
+                                        </h5>
+                                        <button onclick="toggleCardDetail('detail-peta', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
+                                            <span>Lihat Penjelasan</span>
+                                            <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
+                                        </button>
+                                    </div>
 
-                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Overview
-                                    </h5>
-                                    
-                                    <button onclick="toggleCardDetail('detail-peta', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
-                                        <span>Lihat Penjelasan</span>
-                                        <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
-                                    </button>
-
-                                    <div id="detail-peta" class="hidden opacity-0 transition-all duration-300 mt-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs leading-relaxed text-justify">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.....
+                                    <!-- TEKS KARTU 1: OVERVIEW -->
+                                    <div id="detail-peta" class="hidden opacity-0 transition-all duration-300 mt-5 pt-5 border-t border-slate-200/60 dark:border-slate-800/80 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">Panduan Analisis dan Wawasan Strategis (Overview)</h4>
+                                        <p class="mb-4 text-justify">Halaman Overview ini berfungsi sebagai instrumen analitik untuk memonitor kondisi ketahanan pangan di Jawa Timur secara komprehensif. Berikut adalah penjelasan operasional serta wawasan strategis yang dapat diperoleh:</p>
+                                        <div class="space-y-4 text-justify">
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">A. Navigasi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Gunakan menu navigasi untuk melakukan transisi antar modul, seperti Factor Analysis atau Food Security Class.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">B. Metrik Utama (KPI)</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Bagian ini menampilkan indikator makro ketahanan pangan untuk melakukan penilaian cepat (snapshot).</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">C. Filter</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Sesuaikan parameter tahun pada filter untuk melakukan pembaruan data secara otomatis di seluruh elemen dasbor.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">D. Volume Produksi Pangan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Visualisasi ini memetakan kabupaten/kota berdasarkan total volume produksi pangan.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">E. Daerah dengan Gini Ratio Tertinggi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Komponen ini menyajikan daftar wilayah dengan tingkat ketimpangan pendapatan tertinggi untuk identifikasi prioritas.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">F. Pemetaan Indikator Ketahanan Pangan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Grafik ini memetakan hubungan antar variabel ketahanan pangan yang dapat dikustomisasi.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">G. Tren AHH dan Sanitasi Layak</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Visualisasi ini mengintegrasikan data sanitasi dan Angka Harapan Hidup jangka panjang.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- KARTU 3: FOOD SECURITY CLASS -->
+                                <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
+                                    <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
+                                        <img src="./asset/FoodSecurityClass.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                                        <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                            <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Food Security Class
+                                        </h5>
+                                        <button onclick="toggleCardDetail('detail-ml', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
+                                            <span>Lihat Penjelasan</span>
+                                            <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- TEKS KARTU 3: FOOD SECURITY CLASS -->
+                                    <div id="detail-ml" class="hidden opacity-0 transition-all duration-300 mt-5 pt-5 border-t border-slate-200/60 dark:border-slate-800/80 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">Panduan Analisis Food Security Class</h4>
+                                        <p class="mb-4 text-justify">Halaman Food Security Class ini menyajikan klasifikasi wilayah berdasarkan tingkat ketahanan pangan. Berikut adalah penjelasan komponen dasbor:</p>
+                                        <div class="space-y-4 text-justify">
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">A. Navigasi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Menu untuk berpindah antar modul dasbor, termasuk Overview dan Factor Analysis.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">B. KPI Ringkasan Klasifikasi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Menampilkan data agregat jumlah wilayah serta persentase distribusi ketahanan pangan.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">C. Filter</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Digunakan untuk memfilter tampilan data berdasarkan tahun pengamatan yang diinginkan.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">D. Peta Ketahanan Pangan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Visualisasi spasial wilayah Jawa Timur yang diwarnai berdasarkan kelas ketahanan pangannya.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">E. Distribusi Kelas</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Donut chart yang memperlihatkan komposisi proporsi jumlah wilayah di setiap klasifikasi.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">F. Treemap Indikator Terpilih</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Visualisasi hierarkis hubungan antara indikator terpilih dan kelas ketahanan pangan.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">G. Perbandingan Nilai Normalisasi Variabel</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Plot perbandingan indikator-indikator makro yang menunjukkan variasi nilai antar kelas.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
-                            <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
-                                <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="./asset/FactorAnalysis.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                            <!-- ================= KOLOM KANAN ================= -->
+                            <div class="space-y-8">
+                                
+                                <!-- KARTU 2: FACTOR ANALYSIS -->
+                                <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
+                                    <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
+                                        <img src="./asset/FactorAnalysis.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                                        <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                            <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Factor Analysis
+                                        </h5>
+                                        <button onclick="toggleCardDetail('detail-tren', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
+                                            <span>Lihat Penjelasan</span>
+                                            <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
+                                        </button>
+                                    </div>
 
-                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Factor Analysis
-                                    </h5>
-                                    
-                                    <button onclick="toggleCardDetail('detail-tren', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
-                                        <span>Lihat Penjelasan</span>
-                                        <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
-                                    </button>
-
-                                    <div id="detail-tren" class="hidden opacity-0 transition-all duration-300 mt-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs leading-relaxed text-justify">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.....
+                                    <!-- TEKS KARTU 2: FACTOR ANALYSIS -->
+                                    <div id="detail-tren" class="hidden opacity-0 transition-all duration-300 mt-5 pt-5 border-t border-slate-200/60 dark:border-slate-800/80 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">Panduan Analisis Factor Analysis</h4>
+                                        <p class="mb-4 text-justify">Halaman Factor Analysis ini berfungsi untuk mengidentifikasi variabel-variabel dominan yang mempengaruhi ketahanan pangan di Jawa Timur. Berikut adalah penjelasan operasional serta wawasan strategis dari elemen dasbor:</p>
+                                        <div class="space-y-4 text-justify">
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">A. Navigasi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Gunakan menu ini untuk berpindah ke modul Overview atau Food Security Class.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">B. KPI Metrik Faktor</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Menampilkan ringkasan statistik makro termasuk kemiskinan, pengangguran, dan variabel penentu ketahanan pangan lainnya.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">C. Filter</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Sesuaikan parameter tahun untuk melakukan pembaruan data secara dinamis pada seluruh grafik.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">D. Prioritas Faktor</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Visualisasi bubble chart yang memetakan bobot kepentingan (Abs Loading) dari berbagai faktor.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">E. Perbandingan Indikator antar Wilayah</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Grafik batang yang membandingkan indikator terpilih di seluruh kabupaten/kota.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">F. Rata-Rata Variabel Dominan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Tabel yang mengelompokkan data berdasarkan kelas ketahanan pangan.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">G. Scatter Plot Kemiskinan vs Pengangguran</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Analisis korelasi dua variabel utama yang memetakan posisi wilayah dalam kuadran.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
-                                <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="./asset/FoodSecurityClass.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                                <!-- KARTU 4: DETAIL WILAYAH -->
+                                <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
+                                    <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
+                                        <img src="./asset/DetailPage.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
+                                        <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
+                                            <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
+                                            <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Detail Wilayah
+                                        </h5>
+                                        <button onclick="toggleCardDetail('detail-faktor', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
+                                            <span>Lihat Penjelasan</span>
+                                            <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
+                                        </button>
+                                    </div>
 
-                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Food Security Class
-                                    </h5>
-                                    
-                                    <button onclick="toggleCardDetail('detail-ml', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
-                                        <span>Lihat Penjelasan</span>
-                                        <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
-                                    </button>
-
-                                    <div id="detail-ml" class="hidden opacity-0 transition-all duration-300 mt-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs leading-relaxed text-justify">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.....
+                                    <!-- TEKS KARTU 4: DETAIL WILAYAH -->
+                                    <div id="detail-faktor" class="hidden opacity-0 transition-all duration-300 mt-5 pt-5 border-t border-slate-200/60 dark:border-slate-800/80 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                                        <h4 class="font-bold text-slate-800 dark:text-slate-100 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">Panduan Analisis Profil Wilayah</h4>
+                                        <p class="mb-4 text-justify">Halaman ini merupakan tampilan detil yang muncul setelah Anda memilih kabupaten/kota tertentu dari modul sebelumnya:</p>
+                                        <div class="space-y-4 text-justify">
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">A. Navigasi</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Menu untuk berpindah antar modul utama. Halaman ini berfungsi sebagai "drill-down".</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">B. KPI Wilayah</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Menampilkan status ketahanan pangan, statistik ekonomi, dan variabel sosial wilayah terpilih.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">C. Judul Daerah yang Dipilih</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Informasi spesifik mengenai nama wilayah and tahun data yang sedang dianalisis.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">D. Produksi Pangan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Grafik batang yang merinci volume komoditas pangan (Padi, Jagung, Kedelai).</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">E. Perubahan Kelas Ketahanan Pangan</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Grafik tren historis yang menunjukkan fluktuasi status ketahanan pangan wilayah.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">F. Nilai dan Posisi Relatif</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Tabel analitik yang mengklasifikasikan setiap indikator berdasarkan arah variabel dan nilai kuartil.</p>
+                                            </div>
+                                            <div>
+                                                <span class="font-bold text-sky-600 block mb-0.5">G. Tren Indikator Spesifik</span>
+                                                <p class="text-slate-600 dark:text-slate-300">Grafik garis interaktif untuk memonitor pergerakan indikator secara tahunan.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="flex flex-col bg-slate-50 dark:bg-slate-900/40 rounded-2xl border border-slate-100 dark:border-slate-800/80 p-5 transition-all duration-300 hover:shadow-md">
-                                <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-200 dark:bg-slate-900 aspect-video flex items-center justify-center relative group mb-4">
-                                    <img src="./asset/DetailPage.png" alt="Panduan Membaca Peta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"/>
-
-                                    <button onclick="openPremiumModal(this)" class="absolute top-4 right-4 z-10 p-2.5 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-700 dark:text-slate-200 shadow-md border border-white/20 opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 hover:bg-white dark:hover:bg-slate-800" title="Perbesar Gambar">
-                                        <span translate="no" class="notranslate material-symbols-outlined text-xl block">open_in_full</span>
-                                    </button>
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-sm text-slate-900 dark:text-white flex items-center gap-2">
-                                        <span class="w-2 h-2 rounded-full bg-primary dark:bg-primary-mid"></span>Halaman Detail Wilayah
-                                    </h5>
-                                    
-                                    <button onclick="toggleCardDetail('detail-faktor', this)" class="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-primary-mid bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-primary transition-all duration-200">
-                                        <span>Lihat Penjelasan</span>
-                                        <span translate="no" class="notranslate material-symbols-outlined text-sm">expand_more</span>
-                                    </button>
-
-                                    <div id="detail-faktor" class="hidden opacity-0 transition-all duration-300 mt-3 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200/60 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs leading-relaxed text-justify">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.....
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </div>
