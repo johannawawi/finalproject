@@ -1691,30 +1691,35 @@
         function togglePanduan() {
             const konten = document.getElementById('konten-panduan');
             const btnText = document.getElementById('text-panduan');
-            const btnIcon = document.getElementById('icon-panduan');
-            const btn = document.getElementById('btn-panduan');
+            
+            if (!konten) return;
+
+            const googleCombo = document.querySelector('.goog-te-combo');
+            const isEnglish = googleCombo && googleCombo.value === 'en';
 
             if (konten.classList.contains('hidden')) {
                 konten.classList.remove('hidden');
-                setTimeout(() => {
-                    konten.classList.remove('opacity-0', '-translate-y-4');
-                    konten.classList.add('opacity-100', 'translate-y-0');
-                }, 50);
                 
-                btnText.textContent = "Sembunyikan Panduan";
-                btnIcon.textContent = "expand_less";
-                btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'border-slate-400');
+                requestAnimationFrame(() => {
+                    konten.style.transition = 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                    konten.style.opacity = '1';
+                    konten.style.transform = 'translateY(0)';
+                });
+
+                if (btnText) {
+                    btnText.textContent = isEnglish ? "Hide Exploration Guide" : "Sembunyikan Panduan Eksplor";
+                }
             } else {
-                konten.classList.remove('opacity-100', 'translate-y-0');
-                konten.classList.add('opacity-0', '-translate-y-4');
+                konten.style.opacity = '0';
+                konten.style.transform = 'translateY(-15px)';
                 
                 setTimeout(() => {
                     konten.classList.add('hidden');
-                }, 400); 
-                
-                btnText.textContent = "Panduan Eksplor Dashboard";
-                btnIcon.textContent = "explore";
-                btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'border-slate-400');
+                }, 300);
+
+                if (btnText) {
+                    btnText.textContent = isEnglish ? "Dashboard Exploration Guide" : "Panduan Eksplor Dashboard";
+                }
             }
         }
 
