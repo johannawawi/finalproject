@@ -445,8 +445,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="relative bg-white" style="height: 900px; width: 100%;">
-                        <div class="w-full h-full" id="tableauViz">
+                    <div class="relative bg-white w-full h-[75vh] md:h-[95vh] min-h-[400px] md:min-h-[580px]">
+                        <div class="absolute inset-0 w-full h-full" id="tableauViz">
                             <div class="absolute inset-0 z-10 flex flex-col items-center justify-center bg-white dark:bg-darkSurface" id="viz-loading">
                                 <div class="spinner mb-4"></div>
                                 <p class="text-sm font-bold text-slate-900 dark:text-white">Menyiapkan Dashboard Interaktif...</p>
@@ -1623,9 +1623,10 @@
                 hideToolbar: true,
                 scrolling: "yes",
                 width: "100%",
-                height: "900px",
+                height: "100%",
                 onFirstInteractive: function () {
                     const loading = document.getElementById("viz-loading");
+                    document.getElementById("viz-loading").style.display = "none";
                     if (loading) {
                         loading.style.opacity = '0';
                         setTimeout(() => { loading.style.display = "none"; }, 500);
